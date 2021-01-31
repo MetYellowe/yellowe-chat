@@ -1,0 +1,108 @@
+<template>
+    <v-app>
+        <v-main style="padding:50px; margin-top:30px;">
+            <h1>
+                Choose a photo in which you are happy or sad or simply mad
+            </h1>
+            <v-file-input
+                multiple
+                label="Add your files"
+                chips
+                @change="onAddFiles"
+            />
+            <v-card-text
+                v-if="changeGo && filesResponse.length < filesLength"
+                class="font-weight-bold"
+            >
+                Please, wait...
+            </v-card-text>
+            <v-card v-if="filesResponse.length == filesLength && changeGo">
+                <v-btn
+                    color="success"
+                    dark
+                    small
+                    @click="giveURL"
+                >
+                    Upload
+                    <v-icon right dark>mdi-cloud-upload</v-icon>
+                </v-btn>
+            </v-card>
+            <v-alert v-if="isError">
+                {{errorText}}
+            </v-alert>
+        </v-main>
+    </v-app>
+</template>
+
+<script>
+export default {
+    data: () => ({
+        filesResponse: [],
+        isError: false,
+        errorText: null,
+        changeGo: false,
+        filesLength: ""
+    }),
+    props: ['getUrl'],
+    methods: {
+        giveURL() {
+            this.getUrl({
+                objOfCloudData: this.filesResponse
+            })
+        },
+        onAddFiles(files) {
+            if (files.length > 0) {
+                this.filesLength = files.length
+                files.forEach((file) => {
+                    this.uploadFileToCloudinary(file, 'POST').then((fileResponse) => {
+                        this.filesResponse.push(fileResponse);
+                    });
+                });
+                this.changeGo = true
+            }
+        },
+        uploadFileToCloudinary(file, method) {
+            return new Promise(function (resolve, reject) {
+                //Ideally these to lines would be in a .env file
+                const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dckio9wiu/upload';
+                const CLOUDINARY_UPLOAD_PRESET = 'weyyjayi';
+
+                let formData = new FormData();
+                formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+                formData.append('folder', 'users-chat-app');
+                formData.append('file', file);
+
+                let request = new XMLHttpRequest();
+                request.open(method, CLOUDINARY_URL, true);
+                request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+                request.onreadystatechange = () => {
+                    // File uploaded successfully
+                    if (request.readyState === 4 && request.status === 200) {
+                        let response = JSON.parse(request.responseText);
+                        resolve(response);
+                    }
+
+                    // Not succesfull, let find our what happened
+                    if (request.status !== 200) {
+                        let response = JSON.parse(request.responseText);
+                        let error = response.error.message;
+                        this.errorText = 'error uploading files ' + error;
+                        this.isError = true;
+                        reject(error);
+                    }
+
+                };
+
+                request.onerror = (err) => {
+                    this.errorText = 'error uploading files ' + error;
+                    this.isError = true;
+                    reject(err);
+                };
+
+                request.send(formData);
+            });
+        }
+    }
+}
+</script>
