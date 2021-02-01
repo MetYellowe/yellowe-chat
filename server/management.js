@@ -47,7 +47,7 @@ app.post('/', async (req, res, next) => {
     //console.log(access_token, token_type)
     //res.end()
 
-    try{
+    /*try{
       const { data } = await axios.get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:"${email}"&search_engine=v3`, {
         headers: {
           "authorization": `${token_type} ${access_token}`
@@ -58,17 +58,11 @@ app.post('/', async (req, res, next) => {
         appMetaData: data[0].app_metadata,
         user_id: data[0].user_id
       }
-      /*res.set({
-        'content-type': 'application/x-www-form-urlencoded',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, DELETE, PUT',
-        'Access-Control-Allow-Headers': 'append,delete,entries,foreach,get,has,keys,set,values,Authorization'
-      })*/
       return res.json(metaData)
     }catch(err){
       console.log(err)
       next(err)
-    }
+    }*/
 
   }catch(err){
     console.log(err)
