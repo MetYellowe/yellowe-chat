@@ -30,24 +30,7 @@ app.post('/', async (req, res, next) => {
       audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/'
     })
     console.log(access_token)
-    /*var options = {
-      method: 'POST',
-      url: 'https://dev-p69g86kq.us.auth0.com/oauth/token',
-      headers: {'content-type': 'application/x-www-form-urlencoded'},
-      data: {
-        grant_type: 'client_credentials',
-        client_id: clientId,
-        client_secret: clientSecret,
-        audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/'
-      }
-    };
-
-    const { data: { access_token, token_type } } = await axios.request(options)*/
-
-    //console.log(access_token, token_type)
-    //res.end()
-
-    /*try{
+    try{
       const { data } = await axios.get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:"${email}"&search_engine=v3`, {
         headers: {
           "authorization": `${token_type} ${access_token}`
@@ -62,7 +45,7 @@ app.post('/', async (req, res, next) => {
     }catch(err){
       console.log(err)
       next(err)
-    }*/
+    }
 
   }catch(err){
     console.log(err)
@@ -73,6 +56,5 @@ app.post('/', async (req, res, next) => {
 
 export default {
   path: '/server/management',
-  //prefix: false,
   handler: app
 }
