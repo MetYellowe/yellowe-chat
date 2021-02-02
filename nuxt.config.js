@@ -119,7 +119,7 @@ export default {
     '/api/': { target: 'https://dev-p69g86kq.us.auth0.com', pathRewrite: {'^/api/': ''} },
     //'/api1/': { target: 'https://metyellowe.github.io', pathRewrite: {'^/api1/': ''} }
   },
-  auth: {
+  /*auth: {
     strategies: {
       auth0: {
         domain: 'dev-p69g86kq.us.auth0.com',
@@ -129,12 +129,12 @@ export default {
         responseType: 'code',
         grantType: 'authorization_code',
         codeChallengeMethod: 'RS256'*/
-      }
+      /*}
     },
     plugins: [
       //'~/plugins/appmetadata'
     ]
-  },
+  },*/
 
   router: {
     //middleware: ['auth'],
