@@ -31,17 +31,28 @@ app.post('/', async (req, res, next) => {
     })
     console.log(access_token)
     try{
-      const { data } = await axios.get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:${email}&search_engine=v3`, {
+      /*const { data } = await axios.get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:${email}&search_engine=v3`, {
         headers: {
           "authorization": `${token_type} ${access_token}`
         }
-      })
-      const metaData = {
+      })*/
+      var options = {
+        method: 'POST',
+        url: 'https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:${email}&search_engine=v3',
+        headers: {'content-type': 'application/json', authorization: `${token_type} ${access_token}`}
+      };
+
+      axios.request(options).then(function (response) {
+        console.log(response.data);
+      }).catch(function (error) {
+        console.error(error);
+      });
+      /*const metaData = {
         userMetaData: data[0].user_metadata,
         appMetaData: data[0].app_metadata,
         user_id: data[0].user_id
       }
-      return res.json(metaData)
+      return res.json(metaData)*/
     }catch(err){
       console.log(err)
       next(err)
