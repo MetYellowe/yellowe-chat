@@ -119,25 +119,25 @@ export default {
     '/api/': { target: 'https://dev-p69g86kq.us.auth0.com', pathRewrite: {'^/api/': ''} },
     //'/api1/': { target: 'https://metyellowe.github.io', pathRewrite: {'^/api1/': ''} }
   },
-  /*auth: {
+  auth: {
     strategies: {
       auth0: {
         domain: 'dev-p69g86kq.us.auth0.com',
         client_id: '3waBNUoS0juK0IDLtRLFMHTt5wwDcHcQ',
-        /*audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/',
+        audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/',
         scope: ['openid', 'profile', 'email', 'offline_access'],
         responseType: 'code',
         grantType: 'authorization_code',
-        codeChallengeMethod: 'RS256'*/
-      /*}
+        codeChallengeMethod: 'S256'
+      }
     },
     plugins: [
-      //'~/plugins/appmetadata'
+      '~/plugins/appmetadata'
     ]
-  },*/
+  },
 
   router: {
-    //middleware: ['auth'],
+    middleware: ['auth'],
     //base: '/metyellowe.github.io/'
   },
   /*
