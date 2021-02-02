@@ -9,12 +9,12 @@ export default {
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
-  ssr: false,
+  ssr: true,
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
   */
-  target: 'static',
+  target: 'server',
   serverMiddleware: [
     { path:'/server', handler: '~/server/web-socket' },
     { path: '/server', handler: '~/server/management' },
