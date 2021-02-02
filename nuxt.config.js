@@ -137,7 +137,7 @@ export default {
   },
 
   router: {
-    middleware: ['auth'],
+    //middleware: ['auth'],
     //base: '/metyellowe.github.io/'
   },
   /*
