@@ -31,7 +31,7 @@ app.post('/', async (req, res, next) => {
     })
     console.log(access_token)
     try{
-      const { data } = await axios.get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:"${email}"&search_engine=v3`, {
+      const { data } = await axios.get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:${email}&search_engine=v3`, {
         headers: {
           "authorization": `${token_type} ${access_token}`
         }
