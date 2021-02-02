@@ -125,7 +125,7 @@ export default {
         domain: 'dev-p69g86kq.us.auth0.com',
         client_id: '3waBNUoS0juK0IDLtRLFMHTt5wwDcHcQ',
         audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/',
-        scope: ['openid', 'profile', 'email', 'offline_access'],
+        scope: ['management', 'profile', 'email', 'offline_access'],
         responseType: 'code',
         grantType: 'authorization_code',
         codeChallengeMethod: 'S256'
