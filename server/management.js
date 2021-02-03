@@ -38,7 +38,7 @@ app.post('/', async (req, res, next) => {
       })*/
       var options = {
         method: 'POST',
-        url: 'https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:${email}&search_engine=v3',
+        url: 'https://dev-p69g86kq.us.auth0.com/api/v2',
         headers: {'content-type': 'application/json', authorization: `${token_type} ${access_token}`}
       };
 
