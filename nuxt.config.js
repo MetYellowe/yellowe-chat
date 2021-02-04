@@ -1,10 +1,10 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  /*server: {
-    port: 8000, // default: 3000
-    host: '0.0.0.0' // default: localhost
-  },*/
+  server: {
+    port: process.env.PORT || 8000, // default: 3000
+    //host: '0.0.0.0' // default: localhost
+  },
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
@@ -84,6 +84,7 @@ export default {
   ],
   
   axios: {
+    baseURL: process.env.BASE_URL
     //browserBaseURL: process.env.BROWSER_BASE_URL,
     //proxy: true,
     //https: true
