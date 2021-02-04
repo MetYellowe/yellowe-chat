@@ -5,7 +5,10 @@ export default async function ({ app: { $auth, $axios, $config: { browserBaseURL
   }
   if($auth) {
     const { email } = $auth.$storage.getUniversal('user')
-  
+    const data = {
+      email: email,
+      axios: $axios
+    }
     //const appMetaData = $auth.$storage.getUniversal('appMetaData')
     //if(!appMetaData) {
       /*const headers = {
@@ -19,7 +22,7 @@ export default async function ({ app: { $auth, $axios, $config: { browserBaseURL
       }*/
       try{
         const { data } = await $axios.$post('/server/management', email)
-        $auth.$storage.setUniversal('metaData', [data,$axios], false)
+        $auth.$storage.setUniversal('metaData', data, false)
 
       } catch (err) {
         console.log(err)
