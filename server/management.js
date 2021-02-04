@@ -18,7 +18,7 @@ function setCORSHeader(res, path) {
   next();
 });*/
 
-async (req, res, next) => {
+app.post('/', async (req, res, next) => {
   
   const { body: { email } } = req
   console.log(email)
@@ -53,7 +53,7 @@ async (req, res, next) => {
     next(err)
   }
 
-}
+})
 
 export default {
   path: '/server/management',
