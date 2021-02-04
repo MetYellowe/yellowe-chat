@@ -98,12 +98,12 @@ export default {
     }*/
   },
 
-  publicRuntimeConfig: {
+  /*publicRuntimeConfig: {
     axios: {
       browserBaseURL: 'https://dev-p69g86kq.us.auth0.com',
       //managementURL: '/server/management'
     }
-  },
+  },*/
   
   /*privateRuntimeConfig: {
     axios: {
