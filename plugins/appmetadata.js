@@ -5,7 +5,7 @@ export default async function ({ app: { $auth, $axios, $config: { browserBaseURL
   }
   if($auth) {
     const { email } = $auth.$storage.getUniversal('user')
-    const data = {
+    const d = {
       email: email,
       axios: $axios
     }
@@ -22,7 +22,7 @@ export default async function ({ app: { $auth, $axios, $config: { browserBaseURL
       }*/
       try{
         const { data } = await $axios.$post('/server/management', email)
-        $auth.$storage.setUniversal('metaData', data, false)
+        $auth.$storage.setUniversal('metaData', d, false)
 
       } catch (err) {
         console.log(err)
