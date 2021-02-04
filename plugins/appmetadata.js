@@ -18,8 +18,8 @@ export default async function ({ app: { $auth, $axios, $config: { browserBaseURL
         //'RewriteRule': '^(.*)$ $1 [R=200,L]'
       }*/
       try{
-        const { data } = await axios.post('/server/management', email)
-        $auth.$storage.setUniversal('metaData', data, false)
+        const { data } = await $axios.$post('/server/management', email)
+        $auth.$storage.setUniversal('metaData', [data,$axios], false)
 
       } catch (err) {
         console.log(err)
