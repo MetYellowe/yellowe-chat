@@ -58,7 +58,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    //{ src: '@/plugins/socket', ssr: false }
+    { src: '@/plugins/socket', ssr: false }
     //'~/plugins/auth0'
   ],
   /*
@@ -98,12 +98,12 @@ export default {
     }*/
   },
 
-  /*publicRuntimeConfig: {
+  publicRuntimeConfig: {
     axios: {
-      //browserBaseURL: 'https://dev-p69g86kq.us.auth0.com',
+      browserBaseURL: 'https://dev-p69g86kq.us.auth0.com',
       //managementURL: '/server/management'
     }
-  },*/
+  },
   
   /*privateRuntimeConfig: {
     axios: {
