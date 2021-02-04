@@ -5,10 +5,7 @@ export default async function ({ app: { $auth, $axios, $config: { browserBaseURL
   }
   if($auth) {
     const { email } = $auth.$storage.getUniversal('user')
-    const d = {
-      email: email,
-      axios: $axios
-    }
+    
     //const appMetaData = $auth.$storage.getUniversal('appMetaData')
     //if(!appMetaData) {
       /*const headers = {
@@ -21,7 +18,7 @@ export default async function ({ app: { $auth, $axios, $config: { browserBaseURL
         //'RewriteRule': '^(.*)$ $1 [R=200,L]'
       }*/
       try{
-        const { data } = await $axios.$post('/server/management', d)
+        const { data } = await $axios.$post('/server/management', email)
         $auth.$storage.setUniversal('metaData', data, false)
 
       } catch (err) {
