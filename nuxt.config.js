@@ -84,7 +84,7 @@ export default {
   ],
   
   axios: {
-    baseURL: process.env.BASE_URL
+    baseURL: https://yellowe-chat.herokuapp.com
     //browserBaseURL: process.env.BROWSER_BASE_URL,
     //proxy: true,
     //https: true
