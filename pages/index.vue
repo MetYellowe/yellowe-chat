@@ -65,7 +65,7 @@
               </v-card>
             </v-col>
           </v-row>-->
-          {{$auth.loggedIn}}
+          {{$auth.$storage.getUniversal('user').email}}
         </v-container>
     </v-card>
 </template>
