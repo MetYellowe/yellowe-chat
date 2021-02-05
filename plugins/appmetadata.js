@@ -4,8 +4,8 @@ export default async function ({ app: { $auth, $axios, $config: { browserBaseURL
     return
   }
   if($auth) {
-    const { email } = $auth.$storage.getUniversal('user')
-    
+    //const { email } = $auth.$storage.getUniversal('user')
+    const email = 'yellowee94@gmail.com'
     //const appMetaData = $auth.$storage.getUniversal('appMetaData')
     //if(!appMetaData) {
       /*const headers = {
