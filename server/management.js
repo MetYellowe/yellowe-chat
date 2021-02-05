@@ -29,8 +29,8 @@ app.post('/', async (req, res, next) => {
       client_secret: clientSecret,
       audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/'
     })
-    
-    try{
+    return res.json(access_token)
+    /*try{
       const { data } = await axios.get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:"${email}"&search_engine=v3`, {
         headers: {
           "authorization": `${token_type} ${access_token}`
@@ -46,7 +46,7 @@ app.post('/', async (req, res, next) => {
     }catch(err){
       console.log(err)
       next(err)
-    }
+    }*/
     
   }catch(err){
     console.log(err)
