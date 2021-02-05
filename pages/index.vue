@@ -66,7 +66,6 @@
             </v-col>
           </v-row>-->
           {{$auth.$storage.getUniversal('metaData')}}
-          {{$auth.$storage.getUniversal('user').email}}
         </v-container>
     </v-card>
 </template>
