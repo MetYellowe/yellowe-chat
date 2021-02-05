@@ -21,8 +21,8 @@ function setCORSHeader(res, path) {
 app.post('/', async (req, res, next) => {
   
   const { body: { email } } = req
-  return res.json(email)
-  /*try{
+
+  try{
     const { data: { access_token, token_type } } = await axios.post('https://dev-p69g86kq.us.auth0.com/oauth/token/', {
       grant_type: 'client_credentials',
       client_id: clientId,
@@ -51,7 +51,7 @@ app.post('/', async (req, res, next) => {
   }catch(err){
     console.log(err)
     next(err)
-  }*/
+  }
 
 })
 
