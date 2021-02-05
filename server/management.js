@@ -30,7 +30,7 @@ app.post('/', async (req, res, next) => {
       audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/'
     })
     console.log(access_token)
-    try{
+    /*try{
       const { data } = await axios.get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:${email}&search_engine=v3`, {
         headers: {
           "authorization": `${token_type} ${access_token}`
@@ -46,8 +46,24 @@ app.post('/', async (req, res, next) => {
     }catch(err){
       console.log(err)
       next(err)
-    }
+    }*/
+    var options = {
+      method: 'GET',
+      url: 'https://dev-p69g86kq.us.auth0.com/api/v2/users-by-email',
+      params: {email: email},
+      headers: {authorization: `${token_type} ${access_token}`}
+    };
 
+    axios.request(options).then(function (response) {
+      const data = response.data
+      const metaData = {
+        userMetaData: data[0].user_metadata,
+        appMetaData: data[0].app_metadata,
+        user_id: data[0].user_id
+      }
+    }).catch(function (error) {
+      console.error(error);
+    });
   }catch(err){
     console.log(err)
     next(err)
