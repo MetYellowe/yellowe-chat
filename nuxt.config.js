@@ -84,7 +84,7 @@ export default {
   ],
   
   axios: {
-    baseURL: process.env.BASE_URL
+    //baseURL: process.env.BASE_URL
     //browserBaseURL: process.env.BROWSER_BASE_URL,
     //proxy: true,
     //https: true
@@ -99,12 +99,12 @@ export default {
     }*/
   },
 
-  /*publicRuntimeConfig: {
+  publicRuntimeConfig: {
     axios: {
-      browserBaseURL: 'https://dev-p69g86kq.us.auth0.com',
+      browserBaseURL: process.env.BASE_URL,
       //managementURL: '/server/management'
     }
-  },*/
+  },
   
   /*privateRuntimeConfig: {
     axios: {
