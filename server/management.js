@@ -21,7 +21,7 @@ function setCORSHeader(res, path) {
 app.post('/', async (req, res, next) => {
   
   const { body: { email } } = req
-  console.log(email)
+  
   try{
     const { data: { access_token, token_type } } = await axios.post('https://dev-p69g86kq.us.auth0.com/oauth/token/', {
       grant_type: 'client_credentials',
@@ -29,7 +29,7 @@ app.post('/', async (req, res, next) => {
       client_secret: clientSecret,
       audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/'
     })
-    console.log(access_token)
+    return res.json(email)
     /*try{
       const { data } = await axios.get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:${email}&search_engine=v3`, {
         headers: {
@@ -47,7 +47,7 @@ app.post('/', async (req, res, next) => {
       console.log(err)
       next(err)
     }*/
-    var options = {
+    /*var options = {
       method: 'GET',
       url: 'https://dev-p69g86kq.us.auth0.com/api/v2/users-by-email',
       params: {email: email},
@@ -63,7 +63,7 @@ app.post('/', async (req, res, next) => {
       }
     }).catch(function (error) {
       console.error(error);
-    });
+    });*/
   }catch(err){
     console.log(err)
     next(err)
