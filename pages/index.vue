@@ -4,7 +4,7 @@
         class="mx-auto"
     >
         <v-container>
-          <v-row dense>
+          <!--<v-row dense>
             <v-col cols="12">
               <v-card
                 color="#385F73"
@@ -64,7 +64,8 @@
                 </v-card-actions>
               </v-card>
             </v-col>
-          </v-row>
+          </v-row>-->
+          {{$auth.loggedIn}}
         </v-container>
     </v-card>
 </template>
@@ -75,17 +76,17 @@ export default {
     data({ $auth }) {
       return {
           //token: ""
-          info: $auth.$storage.getUniversal('metaData').userMetaData.info,
+          /*info: $auth.$storage.getUniversal('metaData').userMetaData.info,
           img: $auth.$storage.getUniversal('metaData').userMetaData.cloudData,
           snackbar: false,
           message: "",
-          email: $auth.$storage.getUniversal('user').email
+          email: $auth.$storage.getUniversal('user').email*/
       }
     },
     computed: {
-      username: function({ $auth }) {
+      /*username: function({ $auth }) {
           return $auth.$storage.getUniversal('metaData').appMetaData.username.toUpperCase()
-      }
+      }*/
     },
       /*data: async function() {
         const data = await this.$http.$get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:"${this.email}"&search_engine=v3`, {
