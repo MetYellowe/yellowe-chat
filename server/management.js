@@ -7,23 +7,16 @@ app.use(express.json())
 
 const clientId = process.env.clientId
 const clientSecret = process.env.clientSecret
-/*app.use(serveStatic('/'), {
-  setHeaders: setCORSHeader
-})
-function setCORSHeader(res, path) {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-}*/
-/*app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});*/
+const axiosAuth = axios.create({
+  baseURL: process.env.AUTH_BASE_URL
+}
 
 app.post('/', async (req, res, next) => {
   
   const { body: { email } } = req
-  return res.json(email)
-  /*try{
-    const { data: { access_token, token_type } } = await axios.post('dev-p69g86kq.us.auth0.com/oauth/token/', {
+  
+  try{
+    const { data: { access_token, token_type } } = await axiosAuth.post('/oauth/token/', {
       grant_type: 'client_credentials',
       client_id: clientId,
       client_secret: clientSecret,
@@ -31,7 +24,7 @@ app.post('/', async (req, res, next) => {
     })
     
     try{
-      const { data } = await axios.get(`dev-p69g86kq.us.auth0.com/api/v2/users?q=email:"${email}"&search_engine=v3`, {
+      const { data } = await axiosAuth.get(`/api/v2/users?q=email:"${email}"&search_engine=v3`, {
         headers: {
           "authorization": `${token_type} ${access_token}`
         }
@@ -51,7 +44,7 @@ app.post('/', async (req, res, next) => {
   }catch(err){
     console.log(err)
     next(err)
-  }*/
+  }
 
 })
 
