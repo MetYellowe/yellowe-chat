@@ -15,15 +15,15 @@ app.post('/', async (req, res, next) => {
   
   const { body: { email } } = req
   
-  try{
+  /*try{
     const { data: { access_token, token_type } } = await axiosAuth.post('/oauth/token/', {
       grant_type: 'client_credentials',
       client_id: process.env.CLIENT_ID,
       client_secret: process.env.CLIENT_SECRET,
       audience: 'dev-p69g86kq.us.auth0.com/api/v2/'
     })
-    return res.json({ access_token })
-    /*try{
+    //return res.json({ access_token })
+    try{
       const { data } = await axiosAuth.get(`/api/v2/users?q=email:"${email}"&search_engine=v3`, {
         headers: {
           "authorization": `${token_type} ${access_token}`,
@@ -41,12 +41,12 @@ app.post('/', async (req, res, next) => {
     }catch(err){
       console.log(err)
       next(err)
-    }*/
+    }
     
   }catch(err){
     console.log(err)
     next(err)
-  }
+  }*/
 
 })
 
