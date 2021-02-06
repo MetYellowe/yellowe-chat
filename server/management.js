@@ -22,7 +22,7 @@ app.post('/', async (req, res, next) => {
   
   const { body: { email } } = req
 
-  //try{
+  try{
     const { data: { access_token, token_type } } = await axios.post('auth0/oauth/token/', {
       grant_type: 'client_credentials',
       client_id: clientId,
