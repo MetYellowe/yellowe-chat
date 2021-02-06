@@ -5,8 +5,8 @@ import axios from 'axios'
 const app = express()
 app.use(express.json())
 
-const clientId = process.env.clientId
-const clientSecret = process.env.clientSecret
+//const clientId = process.env.AUTH0_CLIENT_ID
+//const clientSecret = process.env.AUTH0_CLIENT_SECRET
 const axiosAuth = axios.create({
   baseURL: process.env.AUTH_BASE_URL
 })
@@ -18,8 +18,8 @@ app.post('/', async (req, res, next) => {
   try{
     const { data: { access_token, token_type } } = await axiosAuth.post('/oauth/token/', {
       grant_type: 'client_credentials',
-      client_id: clientId,
-      client_secret: clientSecret,
+      client_id: process.env.CLIENT_ID,
+      client_secret: process.env.CLIENT_SECRET,
       audience: 'dev-p69g86kq.us.auth0.com/api/v2/'
     })
     return res.json(access_token)
