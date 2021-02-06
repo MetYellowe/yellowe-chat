@@ -9,7 +9,7 @@ const clientId = process.env.clientId
 const clientSecret = process.env.clientSecret
 const axiosAuth = axios.create({
   browserBaseURL: process.env.AUTH_BASE_URL
-}
+})
 
 app.post('/', async (req, res, next) => {
   
