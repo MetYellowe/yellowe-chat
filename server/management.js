@@ -14,7 +14,7 @@ const axiosAuth = axios.create({
 app.post('/', async (req, res, next) => {
   
   const { body: { email } } = req
-  
+  return res.json('hello')
   /*try{
     const { data: { access_token, token_type } } = await axiosAuth.post('/oauth/token/', {
       grant_type: 'client_credentials',
