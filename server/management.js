@@ -2,6 +2,7 @@ import express from 'express'
 import axios from 'axios'
 //const cors = require("cors")
 //var serveStatic = require('serve-static')
+const request = require("request");
 const app = express()
 app.use(express.json())
 
@@ -16,7 +17,17 @@ app.post('/', async (req, res, next) => {
   const { body: { email } } = req
   //return res.json('hello')
   try{
-    const { data: { access_token, token_type } } = await axiosAuth.post('/oauth/token/', {
+    var options = { method: 'POST',
+      url: 'https://dev-p69g86kq.us.auth0.com/oauth/token',
+      headers: { 'content-type': 'application/json' },
+      body: '{"client_id":"y4W7sXKqe6pOd6wxgRlbm2syLcZ9Zes4","client_secret":"4Umk4WQj6eM16hMLhrhNB5fav9RplvKwUWePYFDMjWJgUpOaQRAWjAOyb2nTU-N8","audience":"https://dev-p69g86kq.us.auth0.com/api/v2/","grant_type":"client_credentials"}' };
+
+    request(options, function (error, response, body) {
+      if (error) throw new Error(error);
+
+      return res.json(body)
+    });
+    /*const { data: { access_token, token_type } } = await axiosAuth.post('/oauth/token/', {
       grant_type: 'client_credentials',
       client_id: process.env.CLIENT_ID,
       client_secret: process.env.CLIENT_SECRET,
@@ -41,7 +52,7 @@ app.post('/', async (req, res, next) => {
     }catch(err){
       console.log(err)
       next(err)
-    }
+    }*/
     
   }catch(err){
     console.log(err)
