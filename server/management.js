@@ -24,9 +24,15 @@ app.post('/', async (req, res, next) => {
 
     request(options, function (error, response, body) {
       if (error) throw new Error(error);
+      var options1 = { method: 'GET',
+        url: 'https://dev-p69g86kq.us.auth0.com/api/v2/',
+        headers: { authorization: `${body.token_type} ${body.access_token}` }
+      request(options, function (error, response, body) {
+        if (error) throw new Error(error);
 
-      return res.json(body)
-    });
+        return res.json(body)
+      });
+      
     /*const { data: { access_token, token_type } } = await axiosAuth.post('/oauth/token/', {
       grant_type: 'client_credentials',
       client_id: process.env.CLIENT_ID,
