@@ -20,12 +20,10 @@ app.post('/', async (req, res, next) => {
       grant_type: 'client_credentials',
       client_id: clientId,
       client_secret: clientSecret,
-      audience: 'dev-p69g86kq.us.auth0.com/api/v2/',
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Accept': 'application/json'
+      audience: 'dev-p69g86kq.us.auth0.com/api/v2/'
     })
-    
-    try{
+    return res.json(access_token)
+    /*try{
       const { data } = await axiosAuth.get(`/api/v2/users?q=email:"${email}"&search_engine=v3`, {
         headers: {
           "authorization": `${token_type} ${access_token}`,
@@ -43,7 +41,7 @@ app.post('/', async (req, res, next) => {
     }catch(err){
       console.log(err)
       next(err)
-    }
+    }*/
     
   }catch(err){
     console.log(err)
