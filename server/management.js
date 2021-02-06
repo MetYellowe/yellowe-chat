@@ -22,7 +22,7 @@ app.post('/', async (req, res, next) => {
       client_secret: process.env.CLIENT_SECRET,
       audience: 'dev-p69g86kq.us.auth0.com/api/v2/'
     })
-    return res.json(access_token)
+    return res.json({ access_token })
     /*try{
       const { data } = await axiosAuth.get(`/api/v2/users?q=email:"${email}"&search_engine=v3`, {
         headers: {
