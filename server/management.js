@@ -23,15 +23,15 @@ app.post('/', async (req, res, next) => {
   const { body: { email } } = req
 
   try{
-    const { data: { access_token, token_type } } = await axios.post('auth0/oauth/token/', {
+    const { data: { access_token, token_type } } = await axios.post('adomain/oauth/token/', {
       grant_type: 'client_credentials',
       client_id: clientId,
       client_secret: clientSecret,
-      audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/'
+      audience: 'adomain/api/v2/'
     })
     
     try{
-      const { data } = await axios.get(`auth0/api/v2/users?q=email:"${email}"&search_engine=v3`, {
+      const { data } = await axios.get(`adomain/api/v2/users?q=email:"${email}"&search_engine=v3`, {
         headers: {
           "authorization": `${token_type} ${access_token}`
         }
