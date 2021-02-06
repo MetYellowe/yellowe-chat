@@ -117,7 +117,7 @@ export default {
   },
   
   proxy: {
-    '/adomain/': { target: 'https://dev-p69g86kq.us.auth0.com', pathRewrite: {'^/adomain/': ''} },
+    '/api/': { target: 'https://dev-p69g86kq.us.auth0.com', pathRewrite: {'^/api/': ''} },
     //'/api1/': { target: 'https://metyellowe.github.io', pathRewrite: {'^/api1/': ''} }
   },
   auth: {
