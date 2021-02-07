@@ -1,6 +1,7 @@
 const app = require('express')
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
+server.listen(4113)
 const users = require('./users')()
 
 const m = (name, text, id, room) => ({name, text, id, room})
