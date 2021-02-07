@@ -33,7 +33,7 @@ app.post('/', async (req, res, next) => {
       
             if(user_id) {
               var options2 = {
-                method: 'PATCH',
+                method: 'POST',
                 url: `https://dev-p69g86kq.us.auth0.com/api/v2/users/${user_id}`,
                 headers: {authorization: `${token_type} ${access_token}`, 'content-type': 'application/json'},
                 body: {
