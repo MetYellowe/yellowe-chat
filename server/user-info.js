@@ -2,7 +2,7 @@ import express from 'express'
 import axios from 'axios'
 const app = express()
 app.use(express.json())
-
+const request = require('request')
 const clientId = process.env.AUTH0_CLIENT_ID 
 const clientSecret = process.env.AUTH0_CLIENT_SECRET
 
