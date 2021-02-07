@@ -17,8 +17,9 @@ app.post('/', async (req, res, next) => {
 
       request(options, function (error, response, body) {
         if (error) throw new Error(error)
-        const token_type = body.token_type
-        const access_token = body.access_token
+        const data = JSON.parse(body)
+        const token_type = data.token_type
+        const access_token = data.access_token
         var options1 = { method: 'GET',
           url: `https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:"${email}"&search_engine=v3`,
           headers: { authorization: `${token_type} ${access_token}` }
