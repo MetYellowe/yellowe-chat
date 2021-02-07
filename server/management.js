@@ -27,7 +27,7 @@ app.post('/', async (req, res, next) => {
       var options1 = { method: 'GET',
         url: 'https://dev-p69g86kq.us.auth0.com/api/v2/',
         headers: { authorization: `${body.token_type} ${body.access_token}` }
-      request(options, function (error, response, body) {
+      request(options1, function (error, response, body) {
         if (error) throw new Error(error);
 
         return res.json(body)
