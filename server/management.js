@@ -25,10 +25,10 @@ app.post('/', async (req, res, next) => {
 
     request(options, function (error, response, body) {
       if (error) throw new Error(error)
-      
+      const data = JSON.parse(body)
       var options1 = { method: 'GET',
         url: `https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:"${email}"&search_engine=v3`,
-        headers: { authorization: `${body.token_type} ${body.access_token}` }
+        headers: { authorization: `${data.token_type} ${data.access_token}` }
       }
       
       request(options1, function (error, response, body) {
