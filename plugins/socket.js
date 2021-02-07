@@ -5,7 +5,7 @@ import VueSocketIO from 'vue-socket.io'
 export default function({ store }) {
     Vue.use(new VueSocketIO({
         debug: false,
-        connection: '/',
+        connection: process.env.BASE_URL,
         vuex: {
             store,
             actionPrefix: 'SOCKET_',
