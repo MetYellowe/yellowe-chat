@@ -44,11 +44,13 @@ app.post('/', async (req, res, next) => {
                 }
               }  
     
-              request(options2, function (error, response, body) {
-                if (error) throw new Error(error)
-                const data = JSON.parse(body)
-                return res.json(data[0].user_metadata)
-              })
+              try {
+                const { data: { user_metadata } } = await axios.request(options2)
+                res.json(user_metadata)
+                //next()
+              } catch(err) {
+                console.log(err)
+              }
             }
           }
         })
