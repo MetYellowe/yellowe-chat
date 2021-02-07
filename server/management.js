@@ -33,12 +33,8 @@ app.post('/', async (req, res, next) => {
       
       request(options1, function (error, response, body) {
         if (error) throw new Error(error)
-        const metaData = {
-          userMetaData: body[0].user_metadata,
-          appMetaData: body[0].app_metadata,
-          user_id: body[0].user_id
-        }
-        return res.json(metaData)
+        
+        return res.json(body)
       })
     })
       
