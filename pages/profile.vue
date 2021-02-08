@@ -192,7 +192,7 @@
             //document.location.reload()
         },
         async refText(text) {
-            try{
+            /*try{
                 const { data: { access_token, token_type } } = await this.$http.$post('api/oauth/token/', {
                     grant_type: 'client_credentials',
                     client_id: process.env.CLIENT_ID,
@@ -236,16 +236,16 @@
               catch(err){
                   console.log(err)
                   next(err)
-            }
+            }*/
             //document.location.reload()
-            /*const data = await this.$axios.$post(`/server/user-info`, {
+            const data = await this.$axios.$post(`/server/user-info`, {
                 text: text,
                 urls: this.imgUrls,
                 email: this.email
             })
             this.info = data.info
             this.infoForRedact = data.info
-            this.showProfile = false*/
+            this.showProfile = false
         },
         async refUrl(urls) {
             //document.location.reload()
