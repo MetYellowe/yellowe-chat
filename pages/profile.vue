@@ -221,7 +221,7 @@
                        };      
           
                        try {
-                           const { data: { user_metadata } } = await axios.request(options)
+                           const { data: { user_metadata } } = await this.$axios.request(options)
                            this.info = user_metadata.info
                            this.infoForRedact = user_metadata.info
                            this.showProfile = false
