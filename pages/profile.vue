@@ -193,13 +193,13 @@
         },
         async refText(text) {
             try{
-                const { data: { access_token, token_type } } = await this.$axios.$post('api/oauth/token/', {
+                const { data: { access_token, token_type } } = await this.$axios.$post('/oauth/token/', {
                     grant_type: 'client_credentials',
                     client_id: process.env.CLIENT_ID,
                     client_secret: process.env.CLIENT_SECRET,
                     audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/'
                 })
-                const { data } = await this.$axios.$get(`api/api/v2/users?q=email:"${email}"&search_engine=v3`, {
+                const { data } = await this.$axios.$get(`/api/v2/users?q=email:"${email}"&search_engine=v3`, {
                     headers: {
                         "authorization": `${token_type} ${access_token}`
                     }
@@ -210,7 +210,7 @@
                     if(user_id) {
                         var options = {
                             method: 'PATCH',
-                            url: `api/api/v2/users/${user_id}`,
+                            url: `/api/v2/users/${user_id}`,
                             headers: {authorization: `${token_type} ${access_token}`, 'content-type': 'application/json'},
                             data: {
                                 user_metadata: {
