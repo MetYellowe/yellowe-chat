@@ -28,8 +28,8 @@ app.post('/', async (req, res, next) => {
         request(options1, function (error, response, body) {
           if (error) throw new Error(error)
           const data = JSON.parse(body)
-          return res.json(data[0].user_metadata)
-          /*if(data[0]) {
+          
+          if(data[0]) {
             const user_id = data[0].user_id
       
             if(user_id) {
@@ -51,7 +51,7 @@ app.post('/', async (req, res, next) => {
                 return res.json(data[0].user_metadata)
               })
             }
-          }*/
+          }
         })
       })
     }
