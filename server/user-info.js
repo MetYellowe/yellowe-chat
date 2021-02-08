@@ -48,7 +48,7 @@ app.post('/', async (req, res, next) => {
                 if (error) throw new Error(error)
                 const data = JSON.parse(body)
                 return res.json(data[0].user_metadata)
-              }
+              })
             }
           }
         })
