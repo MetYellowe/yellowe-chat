@@ -86,9 +86,9 @@ export default {
   axios: {
     //baseURL: process.env.BASE_URL
     //browserBaseURL: process.env.BROWSER_BASE_URL,
-    proxy: true,
+    //proxy: true,
     //https: true
-    prefix: '/api/'
+    //prefix: '/api/'
     /*headers: {
       post: {
         'content-type': 'application/json;charset=UTF-8',
@@ -101,7 +101,7 @@ export default {
 
   publicRuntimeConfig: {
     axios: {
-      //browserBaseURL: process.env.BASE_URL,
+      browserBaseURL: process.env.BASE_URL,
       //managementURL: '/server/management'
     }
   },
