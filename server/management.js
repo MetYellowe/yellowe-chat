@@ -16,8 +16,8 @@ app.post('/', async (req, res, next) => {
   
   const { body: { email } } = req
   
-  /*try{
-    var options = { method: 'POST',
+  try{
+    /*var options = { method: 'POST',
       url: 'https://dev-p69g86kq.us.auth0.com/oauth/token',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({"client_id":clientId,"client_secret":clientSecret,"audience":"https://dev-p69g86kq.us.auth0.com/api/v2/","grant_type":"client_credentials"})
