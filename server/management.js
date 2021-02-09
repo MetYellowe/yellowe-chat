@@ -20,7 +20,7 @@ app.post('/', async (req, res, next) => {
     var options = { method: 'POST',
       url: 'https://dev-p69g86kq.us.auth0.com/oauth/token',
       headers: { 'content-type': 'application/json' },
-      body: `{"client_id":${clientId},"client_secret":${clientSecret},"audience":"https://dev-p69g86kq.us.auth0.com/api/v2/","grant_type":"client_credentials"}`
+      body: JSON.stringify(`{"client_id":${clientId},"client_secret":${clientSecret},"audience":"https://dev-p69g86kq.us.auth0.com/api/v2/","grant_type":"client_credentials"}`)
     }
 
     request(options, function (error, response, body) {
