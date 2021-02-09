@@ -50,6 +50,7 @@ app.post('/', async (req, res, next) => {
                 }
               , function (error, response, body) {
                   if(response.statusCode == 201){
+                    const data = JSON.parse(body)
                     return res.json(data[0].user_metadata)
                   } else {
                     console.log('error: '+ response.statusCode)
