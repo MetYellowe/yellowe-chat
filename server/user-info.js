@@ -7,7 +7,7 @@ const clientId = process.env.AUTH0_CLIENT_ID
 const clientSecret = process.env.AUTH0_CLIENT_SECRET
 const userInfoAxios = axios.create({
     baseURL: 'https://dev-p69g86kq.us.auth0.com'
-}
+})
 app.post('/', async (req, res, next) => {
     const { body: { text, cloudData, email } } = req
     try{
