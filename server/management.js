@@ -6,8 +6,8 @@ const request = require("request");
 const app = express()
 app.use(express.json())
 
-//const clientId = process.env.AUTH0_CLIENT_ID
-//const clientSecret = process.env.AUTH0_CLIENT_SECRET
+const clientId = process.env.AUTH0_CLIENT_ID
+const clientSecret = process.env.AUTH0_CLIENT_SECRET
 const axiosAuth = axios.create({
   baseURL: process.env.AUTH_BASE_URL
 })
@@ -20,7 +20,7 @@ app.post('/', async (req, res, next) => {
     var options = { method: 'POST',
       url: 'https://dev-p69g86kq.us.auth0.com/oauth/token',
       headers: { 'content-type': 'application/json' },
-      body: '{"client_id":"y4W7sXKqe6pOd6wxgRlbm2syLcZ9Zes4","client_secret":"4Umk4WQj6eM16hMLhrhNB5fav9RplvKwUWePYFDMjWJgUpOaQRAWjAOyb2nTU-N8","audience":"https://dev-p69g86kq.us.auth0.com/api/v2/","grant_type":"client_credentials"}'
+      body: '{"client_id":clientId,"client_secret":clientSecret,"audience":"https://dev-p69g86kq.us.auth0.com/api/v2/","grant_type":"client_credentials"}'
     }
 
     request(options, function (error, response, body) {
