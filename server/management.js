@@ -49,8 +49,8 @@ app.post('/', async (req, res, next) => {
       const { data } = await managementAxios.get(`/api/v2/users?q=email:"${email}"&search_engine=v3`, {
         headers: {
           "authorization": `${token_type} ${access_token}`,
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Accept': 'application/json'
+          /*'Content-Type': 'application/x-www-form-urlencoded',
+          'Accept': 'application/json'*/
         }
       })
       
