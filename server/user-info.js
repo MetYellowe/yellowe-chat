@@ -7,18 +7,18 @@ const clientId = process.env.AUTH0_CLIENT_ID
 const clientSecret = process.env.AUTH0_CLIENT_SECRET
 const port = process.env.PORT || '3000'
 const userInfoAxios = axios.create({
-    baseURL: 'https://dev-p69g86kq.us.auth0.com:' + port
+    baseURL: ''
 })
 app.post('/', async (req, res, next) => {
     const { body: { text, cloudData, email } } = req
     try{
-      const { data: { access_token, token_type } } = await userInfoAxios.post('/oauth/token/', {
+      const { data: { access_token, token_type } } = await userInfoAxios.post('https://dev-p69g86kq.us.auth0.com/oauth/token/', {
         grant_type: 'client_credentials',
         client_id: clientId,
         client_secret: clientSecret,
         audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/'
       })
-      const { data } = await userInfoAxios.get(`/api/v2/users?q=email:"${email}"&search_engine=v3`, {
+      const { data } = await userInfoAxios.get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:"${email}"&search_engine=v3`, {
         headers: {
           "authorization": `${token_type} ${access_token}`
         }
@@ -29,7 +29,7 @@ app.post('/', async (req, res, next) => {
         if(user_id) {
           var options = {
             method: 'PATCH',
-            url: `/api/v2/users/${user_id}`,
+            url: `https://dev-p69g86kq.us.auth0.com/api/v2/users/${user_id}`,
             headers: {authorization: `${token_type} ${access_token}`, 'content-type': 'application/json'},
             data: {
               user_metadata: {
