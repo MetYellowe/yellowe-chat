@@ -2,10 +2,10 @@ import express from 'express'
 import axios from 'axios'
 const app = express()
 app.use(express.json())
-const request = require('request')
+//const request = require('request')
 const clientId = process.env.AUTH0_CLIENT_ID 
 const clientSecret = process.env.AUTH0_CLIENT_SECRET
-const port = process.env.PORT || '3000'
+//const port = process.env.PORT || '3000'
 const userInfoAxios = axios.create({
     baseURL: 'https://dev-p69g86kq.us.auth0.com'
 })
