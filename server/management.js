@@ -1,23 +1,23 @@
 import express from 'express'
-import axios from 'axios'
+//import axios from 'axios'
 //const cors = require('cors')
 //var serveStatic = require('serve-static')
-//const request = require('request')
+const request = require('request')
 const app = express()
 app.use(express.json())
 
 const clientId = process.env.AUTH0_CLIENT_ID
 const clientSecret = process.env.AUTH0_CLIENT_SECRET
-const managementAxios = axios.create({
+/*const managementAxios = axios.create({
   baseURL: process.env.AUTH_BASE_URL
-})
+})*/
 
 app.post('/', async (req, res, next) => {
   
   const { body: { email } } = req
   
   try{
-    /*var options = { method: 'POST',
+    var options = { method: 'POST',
       url: 'https://dev-p69g86kq.us.auth0.com/oauth/token',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({"client_id":clientId,"client_secret":clientSecret,"audience":"https://dev-p69g86kq.us.auth0.com/api/v2/","grant_type":"client_credentials"})
@@ -36,9 +36,9 @@ app.post('/', async (req, res, next) => {
         
         return res.json(body)
       })
-    })*/
+    })
       
-    const { data: { access_token, token_type } } = await managementAxios.post('/oauth/token/', {
+    /*const { data: { access_token, token_type } } = await managementAxios.post('/oauth/token/', {
       grant_type: 'client_credentials',
       client_id: clientId,
       client_secret: clientSecret,
@@ -63,7 +63,7 @@ app.post('/', async (req, res, next) => {
     }catch(err){
       console.log(err)
       next(err)
-    }
+    }*/
     
   }catch(err){
     console.log(err)
