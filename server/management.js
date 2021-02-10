@@ -40,8 +40,8 @@ app.post('/', async (req, res, next) => {
       
     const { data: { access_token, token_type } } = await managementAxios.post('/oauth/token/', {
       grant_type: 'client_credentials',
-      client_id: process.env.AUTH0_CLIENT_ID,
-      client_secret: process.env.AUTH0_CLIENT_SECRET,
+      client_id: clientId,
+      client_secret: clientSecret,
       audience: 'dev-p69g86kq.us.auth0.com/api/v2/'
     })
     //return res.json({ access_token })
