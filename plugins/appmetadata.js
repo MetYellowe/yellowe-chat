@@ -1,9 +1,9 @@
-import axios from 'axios'
+//import axios from 'axios'
 export default async function ({ app: { $auth, $axios, $config: { browserBaseURL } } }) {
   if (!$auth.loggedIn) {
     return
   }
-  if($auth) {
+  
     const { email } = $auth.$storage.getUniversal('user')
     
     //const appMetaData = $auth.$storage.getUniversal('appMetaData')
@@ -18,7 +18,7 @@ export default async function ({ app: { $auth, $axios, $config: { browserBaseURL
         //'RewriteRule': '^(.*)$ $1 [R=200,L]'
       }*/
       try{
-        const { data } = await $axios.$post('/server/management', { email })
+        const  data  = await $axios.$post('/server/management', { email })
         /*const data = JSON.parse(dataJSON)
         const metaData = {
           userMetaData: data[0].user_metadata,
@@ -31,5 +31,5 @@ export default async function ({ app: { $auth, $axios, $config: { browserBaseURL
         console.log(err)
       }
     //}
-  }
+  
 }
