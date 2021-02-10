@@ -9,7 +9,7 @@ app.use(express.json())
 const clientId = process.env.AUTH0_CLIENT_ID
 const clientSecret = process.env.AUTH0_CLIENT_SECRET
 const managementAxios = axios.create({
-  baseURL: 'https://dev-p69g86kq.us.auth0.com'
+  baseURL: process.env.AUTH_BASE_URL
 })
 
 app.post('/', async (req, res, next) => {
