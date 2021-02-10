@@ -3,19 +3,17 @@ import axios from 'axios'
 const app = express()
 app.use(express.json())
 //const request = require('request')
-const clientId = process.env.AUTH0_CLIENT_ID 
-const clientSecret = process.env.AUTH0_CLIENT_SECRET
 //const port = process.env.PORT || '3000'
 const userInfoAxios = axios.create({
-    baseURL: ''
+    baseURL: process.env.AUTH_BASE_URL
 })
 app.post('/', async (req, res, next) => {
     const { body: { text, cloudData, email } } = req
     try{
       const { data: { access_token, token_type } } = await userInfoAxios.post('/oauth/token/', {
         grant_type: 'client_credentials',
-        client_id: clientId,
-        client_secret: clientSecret,
+        client_id: process.env.AUTH0_CLIENT_ID,
+        client_secret: process.env.AUTH0_CLIENT_SECRET,
         audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/'
       })
       const { data } = await userInfoAxios.get(`/api/v2/users?q=email:"${email}"&search_engine=v3`, {
