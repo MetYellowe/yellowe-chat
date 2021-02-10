@@ -13,7 +13,7 @@
     "test": "jest",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
-    "heroku-postbuild": "nuxt build"
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.13.2",
