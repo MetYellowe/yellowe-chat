@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "nuxt build --max-old-space-size=8192",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "test": "jest",
