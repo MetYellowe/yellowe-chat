@@ -1,7 +1,7 @@
 const app = require('express')
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
-server.listen(process.env.PORT)
+server.listen(3000)
 const users = require('./users')()
 
 const m = (name, text, id, room) => ({name, text, id, room})
