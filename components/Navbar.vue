@@ -6,7 +6,7 @@
             dark
             shrink-on-scroll
             prominent
-            :src="require(`~/assets/imgs/auth-page-bar.jpg`)"
+            :src="require(`https://res.cloudinary.com/dckio9wiu/image/upload/v1613169391/users-chat-app/sunset-815270_1920_c88wcp.jpg`)"
             fade-img-on-scroll
             scroll-threshold="500"
             style="padding-top:10px"
