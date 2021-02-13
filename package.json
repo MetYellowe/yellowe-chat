@@ -2,7 +2,7 @@
   "name": "yellowe-chat",
   "version": "1.0.0",
   "engines": {
-    "node": "15.6.0"
+    "node": "15.0.0"
   },
   "private": true,
   "scripts": {
