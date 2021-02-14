@@ -18,7 +18,7 @@ export default async function ({ app: { $auth, $axios, $config: { browserBaseURL
         //'RewriteRule': '^(.*)$ $1 [R=200,L]'
       }*/
       try{
-        const { data }  = await $axios.$post('/server/management', { email })
+        const  data   = await $axios.$post('/server/management', { email })
        
         /*const data = JSON.parse(dataJSON)
         const metaData = {
