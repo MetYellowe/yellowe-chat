@@ -16,7 +16,7 @@ export default {
   */
   target: 'server',
   serverMiddleware: [
-    //{ path:'/server', handler: '~/server/web-socket' },
+    { path:'/server', handler: '~/server/web-socket' },
     { path: '/server', handler: '~/server/management' },
     { path: '/server', handler: '~/server/user-info' },
     { path: '/server', handler: '~/server/delete-img' },
@@ -163,10 +163,10 @@ export default {
   */
   build: {
   },
-  env: {
+  /*env: {
     clientId: process.env.AUTH0_CLIENT_ID || "",
     clientSecret: process.env.AUTH0_CLIENT_SECRET || ""
-  },
+  },*/
   /*render: {
     static: {
       setHeaders(res) {
