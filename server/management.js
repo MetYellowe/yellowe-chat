@@ -8,6 +8,7 @@ app.use(express.json())
 
 const clientId = process.env.AUTH0_CLIENT_ID
 const clientSecret = process.env.AUTH0_CLIENT_SECRET
+const authURL = process.env.AUTH_BASE_URL
 /*const managementAxios = axios.create({
   baseURL: process.env.AUTH_BASE_URL
 })*/
@@ -18,7 +19,7 @@ app.post('/', async (req, res, next) => {
   
   try{
     var options = { method: 'POST',
-      url: 'https://dev-p69g86kq.us.auth0.com/oauth/token',
+      url: `${authURL}/oauth/token`,
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({"client_id":clientId,"client_secret":clientSecret,"audience":"https://dev-p69g86kq.us.auth0.com/api/v2/","grant_type":"client_credentials"})
     }
@@ -27,7 +28,7 @@ app.post('/', async (req, res, next) => {
       if (error) throw new Error(error)
       const data = JSON.parse(body)
       var options1 = { method: 'GET',
-        url: `https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:"${email}"&search_engine=v3`,
+        url: `${authURL}/api/v2/users?q=email:"${email}"&search_engine=v3`,
         headers: { authorization: `${data.token_type} ${data.access_token}` }
       }
       
