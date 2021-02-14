@@ -16,7 +16,7 @@ export default {
   */
   target: 'server',
   serverMiddleware: [
-    { path:'/server', handler: '~/server/web-socket' },
+    //{ path:'/server', handler: '~/server/web-socket' },
     { path: '/server', handler: '~/server/management' },
     { path: '/server', handler: '~/server/user-info' },
     { path: '/server', handler: '~/server/delete-img' }
