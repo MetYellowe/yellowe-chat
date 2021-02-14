@@ -101,14 +101,14 @@ export default {
     }
   },*/
 
-  /*http: {
+  http: {
     proxy: true
   },
   
   proxy: {
     '/api/': { target: 'https://dev-p69g86kq.us.auth0.com', pathRewrite: {'^/api/': ''} },
     //'/api1/': { target: 'https://metyellowe.github.io', pathRewrite: {'^/api1/': ''} }
-  },*/
+  },
   auth: {
     strategies: {
       auth0: {
