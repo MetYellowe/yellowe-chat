@@ -47,7 +47,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    //{ src: '@/plugins/socket', ssr: false }
+    { src: '@/plugins/socket', ssr: false }
     //'~/plugins/auth0'
   ],
   /*
