@@ -19,18 +19,7 @@ export default {
     { path:'/server', handler: '~/server/web-socket' },
     { path: '/server', handler: '~/server/management' },
     { path: '/server', handler: '~/server/user-info' },
-    { path: '/server', handler: '~/server/delete-img' },
-    { path: "/api", handler: require("body-parser").json() },
-    {
-      path: "/api",
-      handler: (req, res, next) => {
-        const url = require("url");
-        req.query = url.parse(req.url, true).query;
-        req.params = { ...req.query, ...req.body };
-        next();
-      }
-    },
-    { path: "/api", handler: "~/serverMiddleware/api-server.js" }
+    { path: '/server', handler: '~/server/delete-img' }
   ],
   /*
   ** Headers of the page
