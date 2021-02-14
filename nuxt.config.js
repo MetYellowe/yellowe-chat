@@ -90,7 +90,7 @@ export default {
 
   publicRuntimeConfig: {
     axios: {
-      browserBaseURL: process.env.BASE_URL,
+      baseURL: process.env.BASE_URL,
       //managementURL: '/server/management'
     }
   },
