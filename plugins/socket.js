@@ -5,7 +5,7 @@ import VueSocketIO from 'vue-socket.io'
 export default function({ store }) {
     Vue.use(new VueSocketIO({
         debug: false,
-        connection: '/server/web-socket',
+        connection: 'https://yellowe-chat.herokuapp.com/server/web-socket',
         vuex: {
             store,
             actionPrefix: 'SOCKET_',
