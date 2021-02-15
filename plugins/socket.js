@@ -11,6 +11,6 @@ export default function({ store, process }) {
             actionPrefix: 'SOCKET_',
             mutationPrefix: 'SOCKET_'
         },
-        options: { path: '/index' }
+        options: { path: '/server/index' }
     }))
 }
