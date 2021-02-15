@@ -5,7 +5,7 @@ import VueSocketIO from 'vue-socket.io'
 export default function({ store, process }) {
     Vue.use(new VueSocketIO({
         debug: false,
-        connection: `https://yellowe-chat.herokuapp.com:${process.env.PORT}/`,
+        connection: '/',
         vuex: {
             store,
             actionPrefix: 'SOCKET_',
