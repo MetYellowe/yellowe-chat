@@ -2,10 +2,10 @@ import Vue from 'vue'
 import VueSocketIO from 'vue-socket.io'
 //import store from '../store'
 //const HOST = location.origin.replace(/^http/, 'ws')
-export default function({ store }) {
+export default function({ store, process }) {
     Vue.use(new VueSocketIO({
         debug: false,
-        connection: 'process.env.WS_URL',
+        connection: `https://yellowe-chat.herokuapp.com:${process.env.PORT}/`,
         vuex: {
             store,
             actionPrefix: 'SOCKET_',
