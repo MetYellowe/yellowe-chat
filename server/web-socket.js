@@ -71,12 +71,12 @@ io.on('connection', socket => {
     })
 })
 
-/*module.exports = {
+module.exports = {
     path: '/server/',
     handler: io
-}*/
+}
 
-module.exports = {
+/*module.exports = {
     app,
     server
-}
+}*/
