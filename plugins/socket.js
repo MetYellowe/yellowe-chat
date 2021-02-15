@@ -11,6 +11,6 @@ export default function({ store, process }) {
             actionPrefix: 'SOCKET_',
             mutationPrefix: 'SOCKET_'
         },
-        //options: { path: '/socket.io/?EIO=3&transport=polling&t=NUc5lyA/?EIO=3&transport=polling&t=NUcAxkZ' }
+        options: { path: '/index' }
     }))
 }
