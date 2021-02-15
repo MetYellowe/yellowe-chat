@@ -32,4 +32,7 @@ async function start() {
     })
 }
 
-start()
+module.exports = {
+    path: '/server/',
+    handler: start
+}
