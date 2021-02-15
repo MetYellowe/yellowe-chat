@@ -153,10 +153,11 @@ export default {
   */
   build: {
   },
-  /*env: {
-    clientId: process.env.AUTH0_CLIENT_ID || "",
-    clientSecret: process.env.AUTH0_CLIENT_SECRET || ""
-  },*/
+  env: {
+    HEROKU_PORT: process.env.PORT
+    //clientId: process.env.AUTH0_CLIENT_ID || "",
+    //clientSecret: process.env.AUTH0_CLIENT_SECRET || ""
+  },
   /*render: {
     static: {
       setHeaders(res) {
