@@ -20,7 +20,7 @@ export default {
     { path: '/server', handler: '~/server/management' },
     { path: '/server', handler: '~/server/user-info' },
     { path: '/server', handler: '~/server/delete-img' },
-    { path: '/server', handler: '~/server/index' }
+    //{ path: '/server', handler: '~/server/index' }
   ],
   /*
   ** Headers of the page
