@@ -5,12 +5,12 @@ import VueSocketIO from 'vue-socket.io'
 export default function({ store }) {
     Vue.use(new VueSocketIO({
         debug: false,
-        connection: 'https://yellowe-chat.herokuapp.com',
+        connection: '/server/web-socket',
         vuex: {
             store,
             actionPrefix: 'SOCKET_',
             mutationPrefix: 'SOCKET_'
         },
-        options: { path: 'server/web-socket/socket.io/' }
+        //options: { path: '/socket.io/?EIO=3&transport=polling&t=NUc5lyA/?EIO=3&transport=polling&t=NUcAxkZ' }
     }))
 }
