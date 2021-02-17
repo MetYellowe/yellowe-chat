@@ -1,6 +1,7 @@
-const express = require('express')
-const server = express().listen(process.env.PORT)
+const app = require('express')()
+const server = require('http').createServer(app)
 const io = require('socket.io')(server)
+app.listen(process.env.PORT)
 const users = require('./users')()
 
 io.on('connection', socket => {
@@ -70,6 +71,7 @@ io.on('connection', socket => {
         })
     })
 })
+server.listen(3001)
 
 module.exports = {
     path: '/server/',
