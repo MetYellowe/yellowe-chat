@@ -4,7 +4,7 @@ export default {
   server: {
     port: process.env.PORT || 8000, // default: 3000
     //host: '0.0.0.0' // default: localhost
-    socket: '~/server/web-socket'
+    //socket: '~/server/web-socket'
   },
   /*
   ** Nuxt rendering mode
