@@ -11,6 +11,6 @@ export default function({ store }) {
             actionPrefix: 'SOCKET_',
             mutationPrefix: 'SOCKET_'
         },
-        options: { path: '/' }
+        options: { path: '/chat' }
     }))
 }
