@@ -1,6 +1,11 @@
 //const app = require('express')()
 //const server = require('http').createServer(app)
-const io = require('socket.io')(process.env.PORT)
+const io = require('socket.io')(3000, {
+    cors: {
+      origin: `https://yellowe-chat.herokuapp.com:${process.env.PORT}`,
+      methods: ["GET", "POST"]
+    }
+})
 //app.listen(process.env.PORT)
 const users = require('./users')()
 
