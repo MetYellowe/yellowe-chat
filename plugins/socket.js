@@ -11,7 +11,7 @@ export default function({ store }) {
             actionPrefix: 'SOCKET_',
             mutationPrefix: 'SOCKET_'
         },
-        withCredentials: true
+        //withCredentials: true
         //options: { path: '/' }
     }))
 }
