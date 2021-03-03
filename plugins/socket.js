@@ -3,7 +3,7 @@ import VueSocketIO from 'vue-socket.io'
 //import store from '../store'
 //const HOST = location.origin.replace(/^https/, 'wss')
 const io = require("socket.io-client");
-const socket = io("https://yellowe-chat-project.ew.r.appspot.com", {
+const socket = io("wss://yellowe-chat-project.ew.r.appspot.com", {
     transports: ['websocket']
 })
 export default function({ store }) {
