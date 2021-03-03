@@ -15,10 +15,10 @@ import VueSocketIO from 'vue-socket.io'
         //options: { path: '/' }
     }))
 }*/
-const io = require("socket.io-client");
+/*const io = require("socket.io-client");
 const socket = io("https://yellowe-chat-project.ew.r.appspot.com", {
   withCredentials: true
 });
 socket.on("connect", () => {
   console.log(socket.id); // "G5p5..."
-});
+});*/
