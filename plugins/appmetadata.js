@@ -5,7 +5,7 @@ export default async function ({ app: { $auth, $axios, $config: { browserBaseURL
   }
     setTimeout(function() {
         const { email } = $auth.$storage.getUniversal('user')
-    }, 1000)
+    }, 0)
     
     //const appMetaData = $auth.$storage.getUniversal('appMetaData')
     //if(!appMetaData) {
