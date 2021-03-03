@@ -3,8 +3,9 @@ export default async function ({ app: { $auth, $axios, $config: { browserBaseURL
   if (!$auth.loggedIn) {
     return
   }
-  
-    const { email } = $auth.$storage.getUniversal('user')
+    setTimeout(function() {
+        const { email } = $auth.$storage.getUniversal('user')
+    }, 1000)
     
     //const appMetaData = $auth.$storage.getUniversal('appMetaData')
     //if(!appMetaData) {
