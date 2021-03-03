@@ -11,6 +11,7 @@ export default function({ store }) {
             actionPrefix: 'SOCKET_',
             mutationPrefix: 'SOCKET_'
         },
+        transports: ['websocket']
         //withCredentials: true
         //options: { path: '/' }
     }))
