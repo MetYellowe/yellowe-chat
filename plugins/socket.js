@@ -2,24 +2,20 @@ import Vue from 'vue'
 import VueSocketIO from 'vue-socket.io'
 //import store from '../store'
 //const HOST = location.origin.replace(/^https/, 'wss')
+const io = require("socket.io-client");
+const socket = io("https://yellowe-chat-project.ew.r.appspot.com", {
+    transports: ['websocket']
+})
 export default function({ store }) {
     Vue.use(new VueSocketIO({
         debug: false,
-        connection: 'https://yellowe-chat-project.ew.r.appspot.com',
+        connection: socket,
         vuex: {
             store,
             actionPrefix: 'SOCKET_',
             mutationPrefix: 'SOCKET_'
         },
-        transports: ['websocket']
         //withCredentials: true
         //options: { path: '/' }
     }))
 }
-/*const io = require("socket.io-client");
-const socket = io("https://yellowe-chat-project.ew.r.appspot.com", {
-  withCredentials: true
-});
-socket.on("connect", () => {
-  console.log(socket.id); // "G5p5..."
-});*/
