@@ -139,12 +139,13 @@ export default {
             const clientId = process.env.AUTH0_CLIENT_ID
             const clientSecret = process.env.AUTH0_CLIENT_SECRET
             const email = this.dataset.email
+            const authBaseURL = process.env.AUTH_BASE_URL
             try{
                 const data = await this.$http.$post(`api/oauth/token`, {
                   grant_type: 'client_credentials',
                   client_id: clientId,
                   client_secret: clientSecret,
-                  audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/'
+                  audience: `${authBaseURL}/api/v2/`
                 })
                 
                 const metaData = await this.$http.$get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:"${email}"&search_engine=v3`, {
