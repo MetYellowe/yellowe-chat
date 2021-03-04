@@ -136,8 +136,8 @@ export default {
             }
         },
         async openPortfolio() {
-            const clientId = process.env.clientId
-            const clientSecret = process.env.clientSecret
+            const clientId = process.env.AUTH0_CLIENT_ID
+            const clientSecret = process.env.AUTH0_CLIENT_SECRET
             const email = this.dataset.email
             try{
                 const data = await this.$http.$post(`api/oauth/token`, {
