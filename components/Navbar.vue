@@ -6,7 +6,7 @@
             dark
             shrink-on-scroll
             prominent
-            src="https://res.cloudinary.com/dckio9wiu/image/upload/v1613169391/users-chat-app/sunset-815270_1920_c88wcp.jpg"
+            src="https://res.cloudinary.com/dckio9wiu/image/upload/v1614879227/users-chat-app/sunset-815270_1920_o1qtxe.jpg"
             fade-img-on-scroll
             scroll-threshold="500"
             style="padding-top:10px"
@@ -84,7 +84,7 @@
 <script>
 export default {
     data: () => ({
-        drawer: false,
+        drawer: true,
         clipped: false
     }),
     methods: {
