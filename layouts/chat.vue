@@ -114,6 +114,10 @@ export default {
         userPortfolioId: "",
         openportfolio: true
     }),
+    asyncData({ process }) {
+        const process = process
+        return { process }
+    },
     computed: {
         ...mapState(["user", "users", "attention"])
     },
@@ -135,11 +139,11 @@ export default {
                 });
             }
         },
-        async openPortfolio({ process }) {
-            const clientId = process.env.AUTH0_CLIENT_ID
-            const clientSecret = process.env.AUTH0_CLIENT_SECRET
+        async openPortfolio() {
+            const clientId = this.process.env.AUTH0_CLIENT_ID
+            const clientSecret = this.process.env.AUTH0_CLIENT_SECRET
             const email = this.dataset.email
-            const authBaseURL = process.env.AUTH_BASE_URL
+            const authBaseURL = this.process.env.AUTH_BASE_URL
             try{
                 const data = await this.$http.$post(`api/oauth/token`, {
                   grant_type: 'client_credentials',
