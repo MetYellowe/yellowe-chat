@@ -18,7 +18,7 @@
                 ></v-img>
             </template>    
 
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>  
+            <v-app-bar-nav-icon @click="drawer = !drawer"/>  
 
             <v-toolbar-title class="mb-5">Welcome in Yellowe Chat</v-toolbar-title>    
 
@@ -45,7 +45,7 @@
             app
             v-model="drawer"
             mobile-breakpoint="550"
-            fixed
+            
         >
             <v-list
                 dense
@@ -84,7 +84,7 @@
 <script>
 export default {
     data: () => ({
-        drawer: true,
+        drawer: false,
         clipped: false
     }),
     methods: {
