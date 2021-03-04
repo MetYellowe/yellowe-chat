@@ -135,7 +135,7 @@ export default {
                 });
             }
         },
-        async openPortfolio() {
+        async openPortfolio({ process }) {
             const clientId = process.env.AUTH0_CLIENT_ID
             const clientSecret = process.env.AUTH0_CLIENT_SECRET
             const email = this.dataset.email
