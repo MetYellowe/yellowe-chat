@@ -114,10 +114,10 @@ export default {
         userPortfolioId: "",
         openportfolio: true
     }),
-    asyncData({ process }) {
+    /*asyncData({ process }) {
         const env = process.env
         return { env }
-    },
+    },*/
     computed: {
         ...mapState(["user", "users", "attention"])
     },
@@ -140,16 +140,15 @@ export default {
             }
         },
         async openPortfolio() {
-            const clientId = this.env.AUTH0_CLIENT_ID
-            const clientSecret = this.env.AUTH0_CLIENT_SECRET
+            const clientId = 'y4W7sXKqe6pOd6wxgRlbm2syLcZ9Zes4'
+            const clientSecret = '4Umk4WQj6eM16hMLhrhNB5fav9RplvKwUWePYFDMjWJgUpOaQRAWjAOyb2nTU-N8'
             const email = this.dataset.email
-            const authBaseURL = this.env.AUTH_BASE_URL
             try{
                 const data = await this.$http.$post(`api/oauth/token`, {
                   grant_type: 'client_credentials',
                   client_id: clientId,
                   client_secret: clientSecret,
-                  audience: `${authBaseURL}/api/v2/`
+                  audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/'
                 })
                 
                 const metaData = await this.$http.$get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:"${email}"&search_engine=v3`, {
