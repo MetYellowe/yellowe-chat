@@ -126,7 +126,7 @@
         info: $auth.$storage.getUniversal('metaData').userMetaData.info,
         infoForRedact: "",
         delInfo: "",
-        imgUrls: this.refUrl(urls) || $auth.$storage.getUniversal('metaData').userMetaData.cloudData,
+        imgUrls: $auth.$storage.getUniversal('metaData').userMetaData.cloudData,
         email: $auth.$storage.getUniversal('user').email
       }
     },
@@ -217,8 +217,7 @@
                 cloudData: joinImgs,
                 email: this.email
             })
-            //this.imgUrls = data.cloudData
-            return data.cloudData
+            this.imgUrls = data.cloudData
             this.showPortfolio = false
         },
         stopCycle() {
