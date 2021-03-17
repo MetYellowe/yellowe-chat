@@ -1,5 +1,5 @@
 //import axios from 'axios'
-export default async function ({ app: { $auth, $axios, $config: { browserBaseURL } } }) {
+export default async function ({ app: { $auth, $axios, store } }) {
   if (!$auth.loggedIn) {
     return
   }
@@ -27,7 +27,8 @@ export default async function ({ app: { $auth, $axios, $config: { browserBaseURL
           appMetaData: data[0].app_metadata,
           user_id: data[0].user_id
         }
-        $auth.$storage.setUniversal('metaData', metaData, false)
+        //$auth.$storage.setUniversal('metaData', metaData, false)
+        store.dispatch('setData', metaData)
 
       } catch (err) {
         console.log(err)
