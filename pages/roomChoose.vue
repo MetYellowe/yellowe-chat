@@ -95,13 +95,13 @@ export default {
         submit() {
             if(this.$refs.form.validate()) {
                 const data = {
-                    userMetaData: this.$auth.$storage.getUniversal('metaData').userMetaData,
-                    appMetaData: this.$auth.$storage.getUniversal('metaData').appMetaData,
+                    userMetaData: this.$store.state.data.userMetaData,
+                    appMetaData: this.$store.state.data.appMetaData,
                     email: this.$auth.$storage.getUniversal('user').email
                 }
                 const interdata = JSON.stringify(data)
                 const user = {
-                    name: this.$auth.$storage.getUniversal('metaData').appMetaData.username.toUpperCase(),
+                    name: this.$store.state.data.appMetaData.username.toUpperCase(),
                     room: this.room || this.selected,
                     interdata: interdata
                 };
