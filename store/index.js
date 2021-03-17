@@ -8,6 +8,7 @@ export const state = () => ({
         }
     ],
     users: [],
+    data: {},
     interdata: {},
     messages: []
 })
@@ -78,6 +79,9 @@ export const mutations = {
     SOCKET_updateUsers(state, users) {
         state.users = users
     },
+    setDataToState(state, data) {
+        state.data = data
+    },
     setInterData(state, data) {
         state.interdata = data
     },
@@ -95,4 +99,10 @@ export const mutations = {
             }
         })
     } 
+}
+
+export const actions = {
+    setData({ commit }, data) {
+        commit('setDataToState', data)
+    }
 }
