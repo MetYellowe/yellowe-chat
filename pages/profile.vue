@@ -123,10 +123,10 @@
         showPortfolio: false,
         cycle: true,
         showArrows: true,
-        info: $auth.$storage.getUniversal('metaData').userMetaData.info,
+        info: this.$store.state.data.userMetaData.info,
         infoForRedact: "",
         delInfo: "",
-        imgUrls: $auth.$storage.getUniversal('metaData').userMetaData.cloudData,
+        imgUrls: this.$store.state.data.userMetaData.cloudData,
         email: $auth.$storage.getUniversal('user').email
       }
     },
