@@ -75,16 +75,16 @@ export default {
     data({ $auth }) {
       return {
           //token: ""
-          info: $auth.$storage.getUniversal('metaData').userMetaData.info,
-          img: $auth.$storage.getUniversal('metaData').userMetaData.cloudData,
+          info: this.$store.state.data.userMetaData.info,
+          img: this.$store.state.data.userMetaData.cloudData,
           snackbar: false,
           message: "",
           email: $auth.$storage.getUniversal('user').email
       }
     },
     computed: {
-      username: function({ $auth }) {
-          return $auth.$storage.getUniversal('metaData').appMetaData.username.toUpperCase()
+      username: function() {
+          return this.$store.state.data.appMetaData.username.toUpperCase()
       }
     },
       /*data: async function() {
