@@ -59,6 +59,7 @@
 <script>
   import ImgInter from '../components/ImgInter'
   export default {
+    layout: 'profile-layout',
     middleware: ["chat"],
     components: {
         ImgInter

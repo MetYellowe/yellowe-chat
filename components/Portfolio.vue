@@ -21,10 +21,9 @@
                     color="success"
                     dark
                     small
-                    @click="giveURL"
+                    @click="hiddenForm"
                 >
-                    Upload
-                    <v-icon right dark>mdi-cloud-upload</v-icon>
+                    Go to Portfolio
                 </v-btn>
             </v-card>
             <v-alert v-if="isError">
@@ -41,21 +40,32 @@ export default {
         isError: false,
         errorText: null,
         changeGo: false,
-        filesLength: ""
+        filesLength: "",
+        data: {}
     }),
-    props: ['getUrl'],
+    props: ['hidForm'],
     methods: {
-        giveURL() {
-            this.getUrl({
-                objOfCloudData: this.filesResponse
+        hiddenForm() {
+            this.hidForm({
+                imagesDownloaded: false,
+                data: this.data
             })
         },
         onAddFiles(files) {
-            if (files.length > 0) {
+            if(files.length > 0) {
                 this.filesLength = files.length
                 files.forEach((file) => {
-                    this.uploadFileToCloudinary(file, 'POST').then((fileResponse) => {
+                    this.uploadFileToCloudinary(file, 'POST').then( async (fileResponse) => {
                         this.filesResponse.push(fileResponse);
+                        await this.$store.dispatch('setData', this.filesResponse)
+                        const { email } = this.$auth.$storage.getUniversal('user')
+                        const data = await this.$axios.$post(`/server/user-info`, {
+                            text: this.$store.state.data.userMetaData.info,
+                            cloudData: this.$store.state.joinImgs,
+                            email: email
+                        })
+                        this.$store.dispatch('setData', data)
+                        this.data = data
                     });
                 });
                 this.changeGo = true

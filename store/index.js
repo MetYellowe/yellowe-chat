@@ -9,6 +9,7 @@ export const state = () => ({
     ],
     users: [],
     data: {},
+    joinImgs: [],
     interdata: {},
     messages: []
 })
@@ -80,7 +81,24 @@ export const mutations = {
         state.users = users
     },
     setDataToState(state, data) {
-        state.data = data
+        if(!data.length) {
+            if(data.cloudData) {
+                state.data.userMetaData = data
+            } else {
+                state.data = data
+            }
+        } else {
+            const imgUrls = state.data.userMetaData.cloudData
+            const joinImgs = data.concat(imgUrls)
+            const numberOfLikes = imgUrls.numberOfLikes
+            const userWhichLiked = imgUrls.userWhichLiked
+            joinImgs.forEach(function(e) {
+                e.numberOfLikes = numberOfLikes || 0
+                e.userWhichLiked = userWhichLiked || [{userName: "X", imgId: "1"}]
+            })
+            
+            state.joinImgs = joinImgs
+        }
     },
     setInterData(state, data) {
         state.interdata = data
@@ -98,9 +116,8 @@ export const mutations = {
                 e.numberOfLikes += 1
             }
         })
-    } 
+    }
 }
-
 export const actions = {
     setData({ commit }, data) {
         commit('setDataToState', data)

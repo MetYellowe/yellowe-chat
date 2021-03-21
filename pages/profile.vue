@@ -16,9 +16,13 @@
                 :refresh="refText"
                 :editingText="delInfo ? '' : infoForRedact ? infoForRedact : info"
             />
-            <Portfolio
+            <!--<Portfolio
                 v-if="showPortfolio && i === 1"
                 :getUrl="refUrl"
+            />-->
+            <Portfolio
+                v-if="showPortfolio && i === 1"
+                :hidForm="imgReady"
             />
             <v-sheet
                 :color="colors[i]"
@@ -104,6 +108,7 @@
   import Portfolio from '../components/Portfolio'
   import Img from '../components/Img'
   export default {
+    layout: 'profile-layout',
     components: {
         Profile,
         Portfolio,
@@ -123,12 +128,20 @@
         showPortfolio: false,
         cycle: true,
         showArrows: true,
-        info: this.$store.state.data.userMetaData.info,
+        //info: this.$store.state.data.userMetaData.info,
         infoForRedact: "",
         delInfo: "",
-        imgUrls: this.$store.state.data.userMetaData.cloudData,
+        //imgUrls: this.$store.state.data.userMetaData.cloudData,
         email: $auth.$storage.getUniversal('user').email
       }
+    },
+    computed: {
+        info() {
+            return this.$store.state.data.userMetaData.info
+        },
+        imgUrls() {
+            return this.$store.state.data.userMetaData.cloudData
+        }
     },
     methods: {
         changeSlide(e) {
@@ -151,13 +164,14 @@
             this.cycle = false
         },
         async deleteInfo() {
-            const data = this.$axios.$post(`/server/user-info`, {
+            const data = await this.$axios.$post(`/server/user-info`, {
                 text: "",
                 urls: this.imgUrls,
                 email: this.email
             })
-            this.info = ""
+            //this.info = ""
             this.delInfo = true
+            this.$store.dispatch('setData', data)
             //document.location.reload()
         },
         async delImgData(id) {
@@ -172,7 +186,8 @@
                 cloudData: arrOfEditableData,
                 email: this.email,
             })
-            this.imgUrls = data.cloudData
+            //this.imgUrls = data.cloudData
+            this.$store.dispatch('setData', data)
             //document.location.reload()
         },
         async deleteAllImg() {
@@ -188,8 +203,8 @@
                 cloudData: [],
                 email: this.email,
             })
-            this.imgUrls = data.cloudData
-            this.showPortfolio = true
+            //this.imgUrls = data.cloudData
+            this.$store.dispatch('setData', data)
             //document.location.reload()
         },
         async refText(text) {
@@ -199,11 +214,12 @@
                 urls: this.imgUrls,
                 email: this.email
             })
-            this.info = data.info
+            //this.info = data.info
             this.infoForRedact = data.info
             this.showProfile = false
+            this.$store.dispatch('setData', data)
         },
-        async refUrl(urls) {
+        /*async refUrl(urls) {
             //document.location.reload()
             const joinImgs = this.imgUrls.concat(urls.objOfCloudData)
             const numberOfLikes = this.imgUrls.numberOfLikes
@@ -219,6 +235,11 @@
             })
             this.imgUrls = data.cloudData
             this.showPortfolio = false
+            
+        },*/
+        imgReady(ready) {
+            this.showPortfolio = ready.imagesDownloaded
+            //this.imgUrls = ready.data.cloudData
         },
         stopCycle() {
             this.cycle = false

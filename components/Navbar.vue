@@ -6,7 +6,7 @@
             dark
             shrink-on-scroll
             prominent
-            src="https://res.cloudinary.com/dckio9wiu/image/upload/v1614879227/users-chat-app/sunset-815270_1920_o1qtxe.jpg"
+            :src="require(`~/assets/imgs/auth-page-bar.jpg`)"
             fade-img-on-scroll
             scroll-threshold="500"
             style="padding-top:10px"
@@ -18,7 +18,7 @@
                 ></v-img>
             </template>    
 
-            <v-app-bar-nav-icon @click="drawer = !drawer"/>  
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>  
 
             <v-toolbar-title class="mb-5">Welcome in Yellowe Chat</v-toolbar-title>    
 
@@ -45,7 +45,7 @@
             app
             v-model="drawer"
             mobile-breakpoint="550"
-            
+            fixed
         >
             <v-list
                 dense

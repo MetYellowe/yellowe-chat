@@ -114,10 +114,6 @@ export default {
         userPortfolioId: "",
         openportfolio: true
     }),
-    /*asyncData({ process }) {
-        const env = process.env
-        return { env }
-    },*/
     computed: {
         ...mapState(["user", "users", "attention"])
     },
@@ -140,8 +136,8 @@ export default {
             }
         },
         async openPortfolio() {
-            const clientId = 'y4W7sXKqe6pOd6wxgRlbm2syLcZ9Zes4'
-            const clientSecret = '4Umk4WQj6eM16hMLhrhNB5fav9RplvKwUWePYFDMjWJgUpOaQRAWjAOyb2nTU-N8'
+            const clientId = "y4W7sXKqe6pOd6wxgRlbm2syLcZ9Zes4"
+            const clientSecret = "4Umk4WQj6eM16hMLhrhNB5fav9RplvKwUWePYFDMjWJgUpOaQRAWjAOyb2nTU-N8"
             const email = this.dataset.email
             try{
                 const data = await this.$http.$post(`api/oauth/token`, {
@@ -163,10 +159,12 @@ export default {
                 }
                 if(this.userPortfolioId != this.user.id) {
                     this.setInterData(interData)
-                    this.$router.push('/profileinter')
+                    //this.$router.push('/profileinter')
+                    window.open('http://localhost:3000/profileinter', '_blank')
                 } else {
                     this.setInterData(interData)
-                    this.$router.push('/profile')
+                    //this.$router.push('/profile')
+                    window.open('http://localhost:3000/profile', '_blank')
                 }
             } catch(err) {
                 console.log(err)
@@ -181,13 +179,12 @@ export default {
         const clientId = process.env.clientId
         const clientSecret = process.env.clientSecret
         const email = 'joblack@i.ua'
-        const authBaseURL = process.env.AUTH_BASE_URL
         try{
             const data = await this.$http.$post(`api/oauth/token`, {
               grant_type: 'client_credentials',
               client_id: clientId,
               client_secret: clientSecret,
-              audience: `${authBaseURL}/api/v2/`
+              audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/'
             })
             
             const metaData = await this.$http.$get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:"${email}"&search_engine=v3`, {

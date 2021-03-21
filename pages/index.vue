@@ -49,18 +49,14 @@
                 </v-card-subtitle>
                 
                 <v-card-actions v-show="$auth.loggedIn">
-                  <v-card-title>{{ info ? "Or let's go to Profile" : 'Or first'   }}</v-card-title>
-                  <v-btn>
-                      <nuxt-link
-                          to="/profile"
-                          style="
-                              text-decoration:none;
-                              color:white
-                          "
-                      >
+                  <v-card-title>{{ info || img != false ? "Or let's go to Profile" : 'Or first'   }}</v-card-title>
+                  <!--<v-btn
+                        @click="openProfile"
+                        style="text-decoration:none;color:white"
+                    >
                         {{ info || img != false ? 'Your Profile' : 'Create your profile' }}
-                      </nuxt-link>
-                  </v-btn>
+                  </v-btn>-->
+                  <nuxt-link to="/profile">{{ info || img != false ? 'Your Profile' : 'Create your profile' }}</nuxt-link>
                 </v-card-actions>
               </v-card>
             </v-col>
@@ -75,59 +71,36 @@ export default {
     data({ $auth }) {
       return {
           //token: ""
-          info: this.$store.state.data.userMetaData.info,
-          img: this.$store.state.data.userMetaData.cloudData,
+          //info: this.$store.state.data.userMetaData.info,
+          //img: this.$store.state.data.userMetaData.cloudData,
           snackbar: false,
           message: "",
           email: $auth.$storage.getUniversal('user').email
       }
     },
-    computed: {
-      username: function() {
-          return this.$store.state.data.appMetaData.username.toUpperCase()
-      }
+    methods: {
+        openProfile() {
+            window.open('http://localhost:3000/profile', '_blank')
+        }
     },
-      /*data: async function() {
-        const data = await this.$http.$get(`https://dev-p69g86kq.us.auth0.com/api/v2/users?q=email:"${this.email}"&search_engine=v3`, {
-            headers: {
-              "authorization": `${this.token.token_type} ${this.token.access_token}`
-            }
-        })
-        return data
-      },
-      metaData: () => ({
-          userMetaData: this.data[0].user_metadata,
-          appMetaData: this.data[0].app_metadata,
-          email: this.email
-      })
-    },*/
+    computed: {
+        username: function({ $auth }) {
+            return this.$store.state.data.appMetaData.username.toUpperCase()
+        },
+        info() {
+            return this.$store.state.data.userMetaData.info
+        },
+        img() {
+            return this.$store.state.data.userMetaData.cloudData
+        }
+    },
     mounted() {
         const {message} = this.$route.query
         if(message && message === "leftChat") {
             this.message = "You left the Yellowe Chat."
         }
         this.snackbar = !!this.message
-
-        /*const clientId = process.env.clientId
-        const clientSecret = process.env.clientSecret
-        const headers = {
-            'content-type': 'application/x-www-form-urlencoded',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, DELETE, PUT',
-            'Access-Control-Allow-Headers': 'append,delete,entries,foreach,get,has,keys,set,values,Authorization',
-            'RewriteEngine': 'On',
-            'RewriteCond': '%{REQUEST_METHOD} OPTIONS',
-            'RewriteRule': '^(.*)$ $1 [R=200,L]'
-        }
-        const { data: { access_token, token_type } } = await this.$axios.$post(`/oauth/token`, {
-            grant_type: 'client_credentials',
-            client_id: clientId,
-            client_secret: clientSecret,
-            audience: 'https://dev-p69g86kq.us.auth0.com/api/v2/'
-        }, headers)
-        this.token = access_token*/
-        
-    }
+    }           
 }
 
 </script>
