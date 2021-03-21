@@ -160,11 +160,11 @@ export default {
                 if(this.userPortfolioId != this.user.id) {
                     this.setInterData(interData)
                     //this.$router.push('/profileinter')
-                    window.open('http://localhost:3000/profileinter', '_blank')
+                    window.open('https://yellowe-chat.herokuapp.com/profileinter', '_blank')
                 } else {
                     this.setInterData(interData)
                     //this.$router.push('/profile')
-                    window.open('http://localhost:3000/profile', '_blank')
+                    window.open('https://yellowe-chat.herokuapp.com/profile', '_blank')
                 }
             } catch(err) {
                 console.log(err)
