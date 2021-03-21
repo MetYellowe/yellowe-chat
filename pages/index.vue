@@ -56,7 +56,15 @@
                     >
                         {{ info || img != false ? 'Your Profile' : 'Create your profile' }}
                   </v-btn>-->
-                  <nuxt-link to="/profile">{{ info || img != false ? 'Your Profile' : 'Create your profile' }}</nuxt-link>
+                  <v-btn>
+                    <nuxt-link
+                      to="/profile"
+                      style="
+                        text-decoration:none;
+                        color:white
+                      "
+                    >{{ info || img != false ? 'Your Profile' : 'Create your profile' }}</nuxt-link>
+                  </v-btn>
                 </v-card-actions>
               </v-card>
             </v-col>
