@@ -1,7 +1,7 @@
 <template>
     <v-carousel
         :cycle="cycle"
-        height="500"
+        height="1000"
         hide-delimiter-background
         show-arrows-on-hover
         :show-arrows="showArrows"
@@ -108,7 +108,7 @@
   import Portfolio from '../components/Portfolio'
   import Img from '../components/Img'
   export default {
-    layout: 'profile-layout',
+    //layout: 'profile-layout',
     components: {
         Profile,
         Portfolio,
