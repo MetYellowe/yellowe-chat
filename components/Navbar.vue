@@ -44,8 +44,7 @@
         <v-navigation-drawer
             app
             v-model="drawer"
-            mobile-breakpoint="550"
-            
+            fixed
         >
             <v-list
                 dense
