@@ -93,7 +93,7 @@ export default {
     },
     computed: {
         username: function({ $auth }) {
-            return this.$store.state.data.appMetaData.username.toUpperCase()
+            return this.$store.state.data.appMetaData.username ? this.$store.state.data.appMetaData.username.toUpperCase() : ''
         },
         info() {
             return this.$store.state.data.userMetaData.info
