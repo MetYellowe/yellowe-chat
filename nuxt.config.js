@@ -119,7 +119,7 @@ export default {
       }
     },
     plugins: [
-      //'~/plugins/appmetadata'
+      '~/plugins/appmetadata'
     ]
   },
 
