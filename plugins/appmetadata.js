@@ -22,9 +22,11 @@ export default async function ({ app: { $auth, $axios, store } }) {
         const  dataJSON   = await $axios.$post('/server/management', { email })
        
         const data = JSON.parse(dataJSON)
+        const appDataUsernameForGoogleRegistration = data[0].app_metadata
+        appDataUsernameForGoogleRegistration.appMetaData.username = $auth.$storage.getUniversal('user').nickname
         const metaData = {
           userMetaData: data[0].user_metadata,
-          appMetaData: data[0].app_metadata,
+          appMetaData: data[0].app_metadata.appMetaData.username ? data[0].app_metadata : appDataUsernameForGoogleRegistration,
           user_id: data[0].user_id
         }
         //$auth.$storage.setUniversal('metaData', metaData, false)
