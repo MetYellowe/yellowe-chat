@@ -1,6 +1,6 @@
 <template>
     <div 
-        
+        v-show="!$auth.loggedIn"
         style="
             padding:30px;
             font:50px sans-serif
