@@ -58,16 +58,20 @@ export default {
                     this.uploadFileToCloudinary(file, 'POST').then( async (fileResponse) => {
                         this.filesResponse.push(fileResponse);
                         await this.$store.dispatch('setData', this.filesResponse)
+                        const store = this.$store
+                        const axios = this.$axios
+                        const thisdata = this.data
+                        const { email } = this.$auth.$storage.getUniversal('user')
                         setTimeout(async function() {
-                            const { email } = this.$auth.$storage.getUniversal('user')
-                            const data = await this.$axios.$post(`/server/user-info`, {
-                                text: this.$store.state.data.userMetaData.info,
-                                cloudData: this.$store.state.joinImgs,
+                            const data = await axios.$post(`/server/user-info`, {
+                                text: store.state.data.userMetaData.info,
+                                cloudData: store.state.joinImgs,
                                 email: email
                             })
-                            await this.$store.dispatch('setData', data)
-                            this.data = data
+                            await store.dispatch('setData', data)
+                            thisdata = data
                         }, 1000);
+                        this.data = thisdata
                     });
                 });
                 this.changeGo = true
