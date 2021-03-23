@@ -64,7 +64,7 @@ export default {
                             cloudData: this.$store.state.joinImgs,
                             email: email
                         })
-                        this.$store.dispatch('setData', data)
+                        await this.$store.dispatch('setData', data)
                         this.data = data
                     });
                 });
