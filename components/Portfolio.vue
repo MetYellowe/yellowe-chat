@@ -59,14 +59,14 @@ export default {
                         this.filesResponse.push(fileResponse)
                     });
                 });
-                this.$store.dispatch('setData', this.filesResponse)
+                await this.$store.dispatch('setData', this.filesResponse)
                 const { email } = this.$auth.$storage.getUniversal('user')
                 const data = await this.$axios.$post(`/server/user-info`, {
                     text: this.$store.state.data.userMetaData.info,
                     cloudData: this.$store.state.joinImgs,
                     email: email
                 })
-                this.$store.dispatch('setData', data)
+                await this.$store.dispatch('setData', data)
                 //this.data = data
                 this.changeGo = true
             }
