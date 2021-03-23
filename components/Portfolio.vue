@@ -56,10 +56,10 @@ export default {
                 this.filesLength = files.length
                 files.forEach((file) => {
                     this.uploadFileToCloudinary(file, 'POST').then((fileResponse) => {
-                        this.filesResponse.push(fileResponse);
-                        this.$store.dispatch('setData', this.filesResponse)
+                        this.filesResponse.push(fileResponse)
                     });
                 });
+                this.$store.dispatch('setData', this.filesResponse)
                 const { email } = this.$auth.$storage.getUniversal('user')
                 const data = await this.$axios.$post(`/server/user-info`, {
                     text: this.$store.state.data.userMetaData.info,
