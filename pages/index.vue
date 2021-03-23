@@ -93,13 +93,13 @@ export default {
     },
     computed: {
         username: function() {
-            return this.$store.state.data.appMetaData.username ? this.$store.state.data.appMetaData.username.toUpperCase() : ''
+            return this.$store.state.data.appMetaData.username.toUpperCase()
         },
         info() {
-            return this.$store.state.data.appMetaData.info ? this.$store.state.data.appMetaData.info : ''
+            return this.$store.state.data.appMetaData.info
         },
         img() {
-            return this.$store.state.data.appMetaData.cloudData ? this.$store.state.data.appMetaData.cloudData : ''
+            return this.$store.state.data.appMetaData.cloudData
         }
     },
     mounted() {
