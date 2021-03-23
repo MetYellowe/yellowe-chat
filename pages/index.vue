@@ -54,7 +54,7 @@
                         @click="openProfile"
                         style="text-decoration:none;color:white"
                     >
-                        {{ info || img != false ? 'Your Profile' : 'Create your profile' }}
+                        {{ info || img.length != false ? 'Your Profile' : 'Create your profile' }}
                   </v-btn>-->
                   <v-btn>
                     <nuxt-link
@@ -63,7 +63,7 @@
                         text-decoration:none;
                         color:white
                       "
-                    >{{ info || img != false ? 'Your Profile' : 'Create your profile' }}</nuxt-link>
+                    >{{ info || img.length != false ? 'Your Profile' : 'Create your profile' }}</nuxt-link>
                   </v-btn>
                 </v-card-actions>
               </v-card>
