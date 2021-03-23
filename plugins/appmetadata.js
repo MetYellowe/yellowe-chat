@@ -22,7 +22,7 @@ export default async function ({ app: { $auth, $axios, store } }) {
         const  dataJSON   = await $axios.$post('/server/management', { email })
        
         const data = JSON.parse(dataJSON)
-        const appDataUsernameForGoogleRegistration = data[0].app_metadata
+        const appDataUsernameForGoogleRegistration = Object.assign({}, data[0].app_metadata)
         appDataUsernameForGoogleRegistration.username = $auth.$storage.getUniversal('user').nickname
         const metaData = {
           userMetaData: data[0].user_metadata,
