@@ -1,7 +1,7 @@
 <template>
     <v-card class="overflow-hidden">
         <v-app-bar
-            fixed
+            absolute
             color="#43a047"
             dark
             shrink-on-scroll
