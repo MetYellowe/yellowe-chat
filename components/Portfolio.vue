@@ -51,23 +51,27 @@ export default {
                 //data: this.data
             })
         },
-        async onAddFiles(files) {
+        onAddFiles(files) {
             if(files.length > 0) {
                 this.filesLength = files.length
                 files.forEach((file) => {
                     this.uploadFileToCloudinary(file, 'POST').then((fileResponse) => {
                         this.filesResponse.push(fileResponse)
-                    });
+                        return this.filesResponse
+                    }).then((files) => {
+                        this.$store.dispatch('setData', files)
+                        return this.$store.state.joinImgs
+                    }).then((joinImgs) => {
+                        const { email } = this.$auth.$storage.getUniversal('user')
+                        const data = this.$axios.$post(`/server/user-info`, {
+                            text: this.$store.state.data.userMetaData.info,
+                            cloudData: joinImgs,
+                            email: email
+                        })
+                        await this.$store.dispatch('setData', data)
+                        //this.data = data
+                    })
                 });
-                await this.$store.dispatch('setData', this.filesResponse)
-                const { email } = this.$auth.$storage.getUniversal('user')
-                const data = await this.$axios.$post(`/server/user-info`, {
-                    text: this.$store.state.data.userMetaData.info,
-                    cloudData: this.$store.state.joinImgs,
-                    email: email
-                })
-                await this.$store.dispatch('setData', data)
-                //this.data = data
                 this.changeGo = true
             }
         },
