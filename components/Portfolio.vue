@@ -48,26 +48,26 @@ export default {
         hiddenForm() {
             this.hidForm({
                 imagesDownloaded: false,
-                data: this.data
+                //data: this.data
             })
         },
-        onAddFiles(files) {
+        async onAddFiles(files) {
             if(files.length > 0) {
                 this.filesLength = files.length
                 files.forEach((file) => {
-                    this.uploadFileToCloudinary(file, 'POST').then( async (fileResponse) => {
+                    this.uploadFileToCloudinary(file, 'POST').then((fileResponse) => {
                         this.filesResponse.push(fileResponse);
-                        await this.$store.dispatch('setData', this.filesResponse)
-                        const { email } = this.$auth.$storage.getUniversal('user')
-                        const data = await this.$axios.$post(`/server/user-info`, {
-                            text: this.$store.state.data.userMetaData.info,
-                            cloudData: this.$store.state.joinImgs,
-                            email: email
-                        })
-                        await this.$store.dispatch('setData', data)
-                        this.data = data
+                        this.$store.dispatch('setData', this.filesResponse)
                     });
                 });
+                const { email } = this.$auth.$storage.getUniversal('user')
+                const data = await this.$axios.$post(`/server/user-info`, {
+                    text: this.$store.state.data.userMetaData.info,
+                    cloudData: this.$store.state.joinImgs,
+                    email: email
+                })
+                this.$store.dispatch('setData', data)
+                //this.data = data
                 this.changeGo = true
             }
         },
