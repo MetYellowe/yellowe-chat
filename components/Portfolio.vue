@@ -68,7 +68,7 @@ export default {
                             cloudData: joinImgs,
                             email: email
                         })
-                        await this.$store.dispatch('setData', data)
+                        this.$store.dispatch('setData', data)
                         //this.data = data
                     })
                 });
