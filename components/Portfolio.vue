@@ -45,32 +45,52 @@ export default {
     }),
     props: ['hidForm'],
     methods: {
-        hiddenForm() {
+        async hiddenForm() {
+            const { email } = this.$auth.$storage.getUniversal('user')
+            const data = await this.$axios.$post(`/server/user-info`, {
+                text: this.$store.state.data.userMetaData.info,
+                cloudData: this.$store.state.joinImgs,
+                email: email
+            })
+            this.$store.dispatch('setData', data)
+            //this.data = data
             this.hidForm({
                 imagesDownloaded: false,
                 //data: this.data
+
             })
         },
+        /*onAddFiles(files) {
+            if(files.length > 0) {
+                this.filesLength = files.length
+                files.forEach((file) => {
+                    this.uploadFileToCloudinary(file, 'POST').then(async (fileResponse) => {
+                        console.log(fileResponse)
+                        this.filesResponse.push(fileResponse);
+                        this.$store.dispatch('setData', this.filesResponse)
+                        const { email } = this.$auth.$storage.getUniversal('user')
+                        const data = await this.$axios.$post(`/server/user-info`, {
+                            text: this.$store.state.data.userMetaData.info,
+                            cloudData: this.$store.state.joinImgs,
+                            email: email
+                        })
+                        this.$store.dispatch('setData', data)
+                        //this.data = data
+                    });
+                });
+                this.changeGo = true
+            }
+        },*/
         onAddFiles(files) {
             if(files.length > 0) {
                 this.filesLength = files.length
                 files.forEach((file) => {
                     this.uploadFileToCloudinary(file, 'POST').then((fileResponse) => {
+                        return fileResponse
+                    }).then((fileResponse) => {
                         this.filesResponse.push(fileResponse)
-                        return this.filesResponse
-                    }).then((files) => {
-                        this.$store.dispatch('setData', files)
-                        return this.$store.state.joinImgs
-                    }).then((joinImgs) => {
-                        const { email } = this.$auth.$storage.getUniversal('user')
-                        const data = this.$axios.$post(`/server/user-info`, {
-                            text: this.$store.state.data.userMetaData.info,
-                            cloudData: joinImgs,
-                            email: email
-                        })
-                        this.$store.dispatch('setData', data)
-                        //this.data = data
-                    })
+                        this.$store.dispatch('setData', this.filesResponse)
+                    });
                 });
                 this.changeGo = true
             }
