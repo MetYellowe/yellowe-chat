@@ -54,7 +54,7 @@
                         @click="openProfile"
                         style="text-decoration:none;color:white"
                     >
-                        {{ info || img != undefined ? 'Your Profile' : 'Create your profile' }}
+                        {{ info || img !== {} ? 'Your Profile' : 'Create your profile' }}
                   </v-btn>-->
                   <v-btn>
                     <nuxt-link
@@ -63,7 +63,7 @@
                         text-decoration:none;
                         color:white
                       "
-                    >{{ info || img != undefined ? 'Your Profile' : 'Create your profile' }}</nuxt-link>
+                    >{{ info || img !== {} ? 'Your Profile' : 'Create your profile' }}</nuxt-link>
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -96,10 +96,10 @@ export default {
             return this.$store.state.data.appMetaData.username.toUpperCase()
         },
         info() {
-            return this.$store.state.data.appMetaData.info
+            return this.$store.state.data.userMetaData.info
         },
         img() {
-            return this.$store.state.data.appMetaData.cloudData
+            return this.$store.state.data.userMetaData.cloudData
         }
     },
     mounted() {
