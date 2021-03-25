@@ -49,12 +49,12 @@
                 </v-card-subtitle>
                 
                 <v-card-actions v-show="$auth.loggedIn">
-                  <v-card-title>{{ info || img != undefined ? "Or let's go to Profile" : 'Or first'   }}</v-card-title>
+                  <v-card-title>{{ info || img.length ? "Or let's go to Profile" : 'Or first'   }}</v-card-title>
                   <!--<v-btn
                         @click="openProfile"
                         style="text-decoration:none;color:white"
                     >
-                        {{ info || img !== {} ? 'Your Profile' : 'Create your profile' }}
+                        {{ info || img.length ? 'Your Profile' : 'Create your profile' }}
                   </v-btn>-->
                   <v-btn>
                     <nuxt-link
@@ -63,7 +63,7 @@
                         text-decoration:none;
                         color:white
                       "
-                    >{{ info || img !== {} ? 'Your Profile' : 'Create your profile' }}</nuxt-link>
+                    >{{ info || img.length ? 'Your Profile' : 'Create your profile' }}</nuxt-link>
                   </v-btn>
                 </v-card-actions>
               </v-card>
