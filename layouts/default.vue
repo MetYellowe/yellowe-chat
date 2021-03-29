@@ -4,7 +4,7 @@
             <v-container fluid>
                 <Navbar/>
                 <nuxt/>
-                <VuetifyGrid2/>
+                
             </v-container>
         </v-main>
     </v-app>
@@ -12,11 +12,11 @@
 
 <script>
 import Navbar from '../components/Navbar'
-import VuetifyGrid2 from '../components/VuetifyGrid2'
+//import VuetifyGrid2 from '../components/VuetifyGrid2'
 export default {
     components: {
         Navbar,
-        VuetifyGrid2
+        
     }
 }
 </script>
