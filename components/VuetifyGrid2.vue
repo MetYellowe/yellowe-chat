@@ -6,9 +6,7 @@
                 <h1
                     class="
                         text-h4
-                        text-md-h2
-                        text-lg-h1
-                        text-xl-h1
+                        
                         text-truncate
                     "
                 >
