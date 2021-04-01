@@ -94,8 +94,8 @@ export default {
     }),
     computed: {
         fontSize() {
-            const { xs, xl } = this.$vuetify.breakpoint
-            return xs ? 'font:bold 9px serif' : xl ? 'font:30px serif' : 'font:20px serif'
+            const { xs, sm, xl } = this.$vuetify.breakpoint
+            return xs ? 'font:bold 9px serif' : sm ? 'font:14px sans-serif' : xl ? 'font:30px serif' : 'font:20px serif'
         }
     },
     methods: {
