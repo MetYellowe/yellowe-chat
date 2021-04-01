@@ -7,7 +7,7 @@
         >
             <v-list-item>
                 <v-list-item-content>
-                    <v-btn>
+                    <v-btn class='mb-3>
                         <v-list-item-title
                             class="title"
                             @click="checkInterlocutor"    
@@ -76,7 +76,7 @@
             height="50px"
         >
             <v-app-bar-nav-icon
-                class="mr-16"
+                :class="mr-2"
                 @click="drawer = !drawer"
             ></v-app-bar-nav-icon>
             <v-tooltip
@@ -85,7 +85,7 @@
             >
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                        class="mr-16"
+                        :class="mrSize"
                         @click="exit"
                         v-bind="attrs"
                         v-on="on"
@@ -115,7 +115,11 @@ export default {
         openportfolio: true
     }),
     computed: {
-        ...mapState(["user", "users", "attention"])
+        ...mapState(["user", "users", "attention"]),
+        mrSize() {
+            const { xs, sm, xl } = this.$vuetify.breakpoint
+            return xs ? 'mr-5' : sm ? 'mr-8' : xl ? 'mr-16' : 'mr-10'
+        }
     },
     methods: {
         ...mapMutations(["clearData", "setInterlocutor", "setInterData"]),
