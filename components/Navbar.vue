@@ -21,7 +21,7 @@
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>  
 
             <div
-                class="mb-5"
+                class="mt-5 ml-5"
                 :style="fontSize"
             >
                 Welcome in Yellowe Chat
