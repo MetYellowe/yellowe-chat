@@ -20,12 +20,12 @@
 
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>  
 
-            <v-toolbar-title
+            <div
                 class="mb-5"
                 :style="fontSize"
             >
                 Welcome in Yellowe Chat
-            </v-toolbar-title>    
+            </div>    
 
             <v-spacer></v-spacer>
             <v-btn v-show="!$auth.loggedIn" @click="login">Log in</v-btn>
@@ -95,7 +95,7 @@ export default {
     computed: {
         fontSize() {
             const { xs, sm, xl } = this.$vuetify.breakpoint
-            return xs ? 'font:bold 9px serif' : sm ? 'font:14px sans-serif' : xl ? 'font:30px serif' : 'font:20px serif'
+            return xs ? 'font:bold 12px serif' : sm ? 'font:14px sans-serif' : xl ? 'font:30px serif' : 'font:20px serif'
         }
     },
     methods: {
