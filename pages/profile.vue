@@ -143,8 +143,8 @@
             return this.$store.state.data.userMetaData.cloudData
         },
         fontSize() {
-            const { xs, xl } = this.$vuetify.breakpoint
-            return xs ? 'font:bold 9px sans-serif' : xl ? 'font:30px sans-serif' : 'font:20px sans-serif'
+            const { xs, sm, xl } = this.$vuetify.breakpoint
+            return xs ? 'font:bold 9px sans-serif' : sm ? 'font:14px sans-serif' : xl ? 'font:30px sans-serif' : 'font:20px sans-serif'
         }
     },
     methods: {
