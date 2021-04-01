@@ -95,7 +95,15 @@
                 </template>
                 <span>Exit</span>
             </v-tooltip>
-            <v-toolbar-title>Chat room</v-toolbar-title> <span class="room-name-design">{{user.room}}</span>
+            <v-toolbar-title :style="fontSize">
+                Chat room
+            </v-toolbar-title>
+            <span
+                class="room-name-design"
+                :style="fontSize"    
+            >
+                {{user.room}}
+            </span>
         </v-app-bar>
         <v-main>
             <div style="height:100%">
@@ -119,6 +127,10 @@ export default {
         mrSize() {
             const { xs, sm, xl } = this.$vuetify.breakpoint
             return xs ? 'mr-5' : sm ? 'mr-8' : xl ? 'mr-16' : 'mr-10'
+        },
+        fontSize() {
+            const { xs, sm, xl } = this.$vuetify.breakpoint
+            return xs ? 'font:8px sans-serif' : sm ? 'font:13px sans-serif' : xl ? 'font:30px sans-serif' : 'font:20px sans-serif'
         }
     },
     methods: {
