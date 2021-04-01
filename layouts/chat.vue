@@ -76,7 +76,7 @@
             height="50px"
         >
             <v-app-bar-nav-icon
-                :class="mr-2"
+                class="mr-2"
                 @click="drawer = !drawer"
             ></v-app-bar-nav-icon>
             <v-tooltip
