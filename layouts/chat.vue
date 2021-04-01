@@ -7,7 +7,7 @@
         >
             <v-list-item>
                 <v-list-item-content>
-                    <v-btn class='mb-3>
+                    <v-btn class="mb-3">
                         <v-list-item-title
                             class="title"
                             @click="checkInterlocutor"    
