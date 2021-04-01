@@ -144,7 +144,7 @@
         },
         fontSize() {
             const { xs, sm, xl } = this.$vuetify.breakpoint
-            return xs ? 'font:bold 9px sans-serif' : sm ? 'font:14px sans-serif' : xl ? 'font:30px sans-serif' : 'font:20px sans-serif'
+            return xs ? 'font:8px sans-serif' : sm ? 'font:13px sans-serif' : xl ? 'font:30px sans-serif' : 'font:20px sans-serif'
         }
     },
     methods: {
