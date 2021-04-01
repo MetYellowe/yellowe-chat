@@ -1,7 +1,6 @@
 <template>
     <v-carousel
         :cycle="cycle"
-        height="1000"
         hide-delimiter-background
         show-arrows-on-hover
         :show-arrows="showArrows"
@@ -34,13 +33,12 @@
                     class="fill-height overflow-y-auto overflow-x-hidden"
                     align="center"
                     justify="center"
+                    style="height:400px"
                     
                 >
                     <v-card
                         light
                         align="center"
-                        justify="center"
-                        justify-content="space-around"
                     >   
                         <v-card-text
                             class="black--text"
@@ -66,6 +64,7 @@
                             v-if="!info && !showProfile && i == 0 || !imgUrls.length && i == 1"
                             @click="changeSlide"
                             :data-visibleslide="slide"
+                            :style="fontSize"
                         >
                             {{ slide }}
                         </v-btn>
@@ -142,6 +141,10 @@
         },
         imgUrls() {
             return this.$store.state.data.userMetaData.cloudData
+        },
+        fontSize() {
+            const { xs, xl } = this.$vuetify.breakpoint
+            return xs ? 'font:bold 9px sans-serif' : xl ? 'font:30px sans-serif' : 'font:20px sans-serif'
         }
     },
     methods: {
