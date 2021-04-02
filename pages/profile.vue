@@ -60,7 +60,7 @@
                             />
                         </v-card-actions>
                         <v-btn
-                            class="black--text"
+                            :class="breakpoint === 'xs' || breakpoint === 'sm' ? 'black--text pb-3' : 'black--text'"
                             v-if="!info && !showProfile && i == 0 || !imgUrls.length && i == 1"
                             @click="changeSlide"
                             :data-visibleslide="slide"
@@ -121,7 +121,8 @@
           'green'
         ],
         slides: [
-          'Write about yourself so that other users can see what a cool person you are!',
+          `Write about yourself so that other users
+           can see what a cool person you are!`,
           'Add your photos to personalize your page'
         ],
         showProfile: false,
@@ -144,7 +145,11 @@
         },
         fontSize() {
             const { xs, sm, xl } = this.$vuetify.breakpoint
-            return xs ? 'font:8px sans-serif' : sm ? 'font:13px sans-serif' : xl ? 'font:30px sans-serif' : 'font:20px sans-serif'
+            return xs ? 'font:12px sans-serif;white-space:pre-line' : sm ? 'font:12px sans-serif;white-space:pre-line' : xl ? 'font:25px sans-serif' : 'font:15px sans-serif'
+        },
+        breakpoint() {
+            const { xs, sm, md, lg } = this.$vuetify.breakpoint
+            return xs ? 'xs' : sm ? 'sm' : md ? 'md' : lg ? 'lg' : 'xl'
         }
     },
     methods: {
