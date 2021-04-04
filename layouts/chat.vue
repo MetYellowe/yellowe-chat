@@ -175,12 +175,12 @@ export default {
                 }
                 if(this.userPortfolioId != this.user.id) {
                     this.setInterData(interData)
-                    //this.$router.push('/profileinter')
-                    window.open('https://yellowe-chat.herokuapp.com/profileinter', '_blank')
+                    this.$router.push('/profileinter')
+                    //window.open('https://yellowe-chat.herokuapp.com/profileinter', '_blank')
                 } else {
                     this.setInterData(interData)
-                    //this.$router.push('/profile')
-                    window.open('https://yellowe-chat.herokuapp.com/profile', '_blank')
+                    this.$router.push('/profile')
+                    //window.open('https://yellowe-chat.herokuapp.com/profile', '_blank')
                 }
             } catch(err) {
                 console.log(err)
