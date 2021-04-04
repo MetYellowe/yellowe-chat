@@ -60,7 +60,7 @@
   import ImgInter from '../components/ImgInter'
   export default {
     layout: 'profile-layout',
-    middleware: ["chat"],
+    //middleware: ["chat"],
     components: {
         ImgInter
     },
