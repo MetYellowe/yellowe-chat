@@ -7,7 +7,6 @@
             <v-file-input
                 multiple
                 label="Add your files"
-                chips
                 @change="onAddFiles"
             />
             <v-card-text
