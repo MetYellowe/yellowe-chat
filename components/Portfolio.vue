@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-main style="padding:50px; margin-top:30px;">
+        <v-main style="padding:50px;">
             <h1>
                 Choose a photo in which you are happy or sad or simply mad
             </h1>
