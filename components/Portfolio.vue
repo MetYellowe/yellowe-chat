@@ -1,9 +1,13 @@
 <template>
-    <v-app>
-        <v-main style="padding:50px;">
-            <h1>
+    <v-container>
+        <v-row style="padding:50px;">
+            <div
+                :class="bp === 'xs' || bp === 'sm' ? 'text-h6' : bp === 'md' || bp === 'lg' ? 'text-h2' : 'text-h1'"
+            >
                 Choose a photo in which you are happy or sad or simply mad
-            </h1>
+            </div>
+        </v-row>
+        <v-row>
             <v-file-input
                 multiple
                 label="Add your files"
@@ -15,21 +19,23 @@
             >
                 Please, wait...
             </v-card-text>
-            <v-card v-if="filesResponse.length == filesLength && changeGo">
-                <v-btn
-                    color="success"
-                    dark
-                    small
-                    @click="hiddenForm"
-                >
-                    Go to Portfolio
-                </v-btn>
-            </v-card>
-            <v-alert v-if="isError">
-                {{errorText}}
-            </v-alert>
-        </v-main>
-    </v-app>
+        </v-row>
+        <v-row v-if="filesResponse.length == filesLength && changeGo">
+            <v-btn
+                color="success"
+                dark
+                small
+                @click="hiddenForm"
+            >
+                Go to Portfolio
+            </v-btn>
+        </v-row>
+
+        <v-alert v-if="isError">
+            {{errorText}}
+        </v-alert>
+            
+    </v-container>
 </template>
 
 <script>
@@ -43,6 +49,12 @@ export default {
         data: {}
     }),
     props: ['hidForm'],
+    computed: {
+        bp() {
+            const { xs, sm, md, lg } = this.$vuetify.breakpoint
+            return xs ? 'xs' : sm ? 'sm' : md ? 'md' : lg ? 'lg' : 'xl'
+        }
+    },
     methods: {
         async hiddenForm() {
             const { email } = this.$auth.$storage.getUniversal('user')
