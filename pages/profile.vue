@@ -27,14 +27,12 @@
             <v-sheet
                 :color="colors[i]"
                 height="100%"
-                class="spacing-playground pb-16"
             >
                 <v-row
                     class="fill-height overflow-y-auto overflow-x-hidden"
                     align="center"
                     justify="center"
-                    style="height:400px"
-                    
+                    :style="showProfile && i === 0 || showPortfolio && i === 1 ? 'height:50px;' : 'height:400px;'"
                 >
                     <v-card
                         light
@@ -50,7 +48,7 @@
                             {{ info }}
                         </v-card-text>
                         <v-card-actions
-                            v-if="imgUrls.length && i === 1"
+                            v-if="imgUrls.length && !showPortfolio && i === 1"
                             @mouseover="stopCycle"
                             @mouseout="activeCycle"
                         >
@@ -61,7 +59,7 @@
                         </v-card-actions>
                         <v-btn
                             :class="breakpoint === 'xs' || breakpoint === 'sm' ? 'black--text pb-3' : 'black--text'"
-                            v-if="!info && !showProfile && i == 0 || !imgUrls.length && i == 1"
+                            v-if="!info && !showProfile && i == 0 || !imgUrls.length && !showPortfolio && i == 1"
                             @click="changeSlide"
                             :data-visibleslide="slide"
                             :style="fontSize"
@@ -78,7 +76,7 @@
                         <v-btn
                             class="black--text mb-4"
                             @click="addNewImgs"
-                            v-if="imgUrls.length && i === 1"
+                            v-if="imgUrls.length && !showPortfolio && i === 1"
                         >
                             <v-icon>mdi-paperclip</v-icon>
                         </v-btn>
@@ -92,9 +90,16 @@
                         <v-btn
                             class="red--text mb-4"
                             @click="deleteAllImg"
-                            v-if="imgUrls.length && i === 1"
+                            v-if="imgUrls.length && !showPortfolio && i === 1"
                         >
                             Delete All
+                        </v-btn>
+                        <v-btn
+                            :class="breakpoint === 'xs' ? 'green--text text-caption' : 'green--text'"
+                            @click="goBackToProfile"
+                            v-if="showProfile && i === 0 || showPortfolio && i === 1"
+                        >
+                            Go Back
                         </v-btn>
                     </v-card>
                 </v-row>
@@ -255,6 +260,10 @@
         },
         activeCycle() {
             this.cycle = true
+        },
+        goBackToProfile() {
+            this.showProfile = false
+            this.showPortfolio = false
         }
     }
   }
