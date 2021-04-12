@@ -48,7 +48,7 @@ export default {
         filesLength: "",
         data: {}
     }),
-    props: ['hidForm'],
+    props: ['hidForm', 'hidBackButton'],
     computed: {
         bp() {
             const { xs, sm, md, lg } = this.$vuetify.breakpoint
@@ -104,6 +104,9 @@ export default {
                     });
                 });
                 this.changeGo = true
+                this.hidBackButton({
+                    buttonRequired: false
+                })
             }
         },
         uploadFileToCloudinary(file, method) {
