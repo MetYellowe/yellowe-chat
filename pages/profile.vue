@@ -2,8 +2,7 @@
     <v-carousel
         :cycle="cycle"
         hide-delimiter-background
-        show-arrows-on-hover
-        :show-arrows="showArrows"
+        :show-arrows="false"
         interval="30000"
     >
         <v-carousel-item
@@ -23,6 +22,7 @@
             <Portfolio
                 v-if="showPortfolio && i === 1"
                 :hidForm="imgReady"
+                :hidBackButton="backButtonCondition"
             />
             <v-sheet
                 :color="colors[i]"
@@ -97,7 +97,7 @@
                         <v-btn
                             :class="breakpoint === 'xs' ? 'green--text text-caption' : 'green--text'"
                             @click="goBackToProfile"
-                            v-if="showProfile && i === 0 || showPortfolio && i === 1"
+                            v-if="showProfile && i === 0 || showPortfolio && i === 1 && goBackCondition"
                         >
                             Go Back
                         </v-btn>
@@ -138,7 +138,8 @@
         infoForRedact: "",
         delInfo: "",
         //imgUrls: this.$store.state.data.userMetaData.cloudData,
-        email: $auth.$storage.getUniversal('user').email
+        email: $auth.$storage.getUniversal('user').email,
+        goBackCondition: true
       }
     },
     computed: {
@@ -253,7 +254,11 @@
         },*/
         imgReady(ready) {
             this.showPortfolio = ready.imagesDownloaded
+            this.goBackCondition = true
             //this.imgUrls = ready.data.cloudData
+        },
+        backButtonCondition(condition) {
+            this.goBackCondition = condition.buttonRequired
         },
         stopCycle() {
             this.cycle = false
