@@ -1,7 +1,6 @@
 <template>
     <v-carousel
         :cycle="cycle"
-        height="1000"
         hide-delimiter-background
         show-arrows-on-hover
         :show-arrows="showArrows"
@@ -20,7 +19,7 @@
                     class="fill-height overflow-y-auto overflow-x-hidden"
                     align="center"
                     justify="center"
-                    
+                    style="height:400px"
                 >
                     <v-card
                         light
