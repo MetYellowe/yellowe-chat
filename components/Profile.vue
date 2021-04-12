@@ -5,7 +5,7 @@
     >
         <v-textarea
             style="
-                font:20px sans-serif;
+                font:20px sans-serif;height:300px
             "
             rows="12"
             v-model="text"
