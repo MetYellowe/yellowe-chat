@@ -106,6 +106,7 @@ export const mutations = {
                 }
             })
             state.joinImgs = joinImgs
+        }
     },
     SOCKET_increaseCountOfLikes(state, data) {
         state.interdata.userMetaData.cloudData.forEach(function(e) {
