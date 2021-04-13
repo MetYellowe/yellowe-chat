@@ -67,7 +67,7 @@
                             {{ slide }}
                         </v-btn>
                         <v-btn
-                            class="black--text mb-4"
+                            class="black--text"
                             v-if="info && i === 0 && !showProfile"
                             @click="addNewInfo"
                         >
@@ -81,7 +81,7 @@
                             <v-icon>mdi-paperclip</v-icon>
                         </v-btn>
                         <v-btn
-                            class="red--text mb-4"
+                            class="red--text"
                             @click="deleteInfo"
                             v-if="info.length && i === 0"
                         >
