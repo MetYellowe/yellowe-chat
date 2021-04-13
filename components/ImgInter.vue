@@ -66,8 +66,7 @@ export default {
       dataset: "",
       showButton: false,
       buttonTarget: false,
-      check: false,
-      isLikeYet: false
+      check: false
     }),
     props: ["idata"],
     computed: {
@@ -87,19 +86,19 @@ export default {
           const userWhichLikedName = this.user.name
           const interdata = this.idata
           const ch = this.check
-          const isLikeYet = this.isLikeYet
-          function check(ch, isLikeYet) {
-              interdata.userMetaData.cloudData.forEach(function(e) {
+          function check(ch) {
+              interd.userMetaData.cloudData.forEach(function(e) {
                   if(e.public_id === imgWhichLikedId) {
-                      e.userWhichLiked.forEach(function(e) {
-                          if(userWhichLikedName === e.userName) {
-                              isLikeYet = true
-                          }
-                      })
-                      if(isLikeYet) {
-                          ch = false
+                      if(e.userWhichLiked.length) {
+                          e.userWhichLiked.forEach(function(e) {
+                              if(userWhichLikedName === e.userName) {
+                                  ch = false
+                              } else {
+                                  ch = true
+                              }
+                          })
                       } else {
-                          ch = true
+                        ch = true
                       }
                   }
               })
