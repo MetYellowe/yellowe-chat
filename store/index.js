@@ -80,28 +80,15 @@ export const mutations = {
     SOCKET_updateUsers(state, users) {
         state.users = users
     },
-    setDataToState(state, data) {
-        if(!data.length) {
-            if(data.cloudData) {
-                state.data.userMetaData = data
-            } else {
-                state.data = data
-            }
-        } else {
-            const imgUrls = state.data.userMetaData.cloudData
-            const joinImgs = data.concat(imgUrls)
-            const numberOfLikes = imgUrls.numberOfLikes
-            const userWhichLiked = imgUrls.userWhichLiked
-            joinImgs.forEach(function(e) {
-                e.numberOfLikes = numberOfLikes || 0
-                e.userWhichLiked = userWhichLiked || [{userName: "X", imgId: "1"}]
-            })
-            
-            state.joinImgs = joinImgs
-        }
-    },
     setInterData(state, data) {
         state.interdata = data
+    },
+    setNumberOfLikes(state, data) {
+        state.interdata.userMetaData.cloudData.forEach(function(e) {
+            if(e.public_id === data.imgWhichLikedId) {
+                e.userWhichLiked.push({ userName: data.userWhichLikedName, imgId: data.imgWhichLikedId })
+            }
+        })
     },
     setDataToState(state, data) {
         if(!data.length) {
