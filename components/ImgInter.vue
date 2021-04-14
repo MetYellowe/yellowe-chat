@@ -4,12 +4,12 @@
       justify="space-around"
     >
       <v-col
-        v-for="i in idata.userMetaData.cloudData"
+        v-for="i in idata.interData.userMetaData.cloudData"
         :key="i.public_id"
         :data-id="i.public_id"
         :data-url="i.url"
         cols="12"
-        :sm="idata.userMetaData.cloudData.length === 1 ? 12 : idata.userMetaData.cloudData.length === 2 ? 6 : 4"
+        :sm="idata.interData.userMetaData.cloudData.length === 1 ? 12 : idata.interData.userMetaData.cloudData.length === 2 ? 6 : 4"
         @mouseover="getDataset"
       >
         <v-card
@@ -70,10 +70,10 @@ export default {
     }),
     props: ["idata"],
     computed: {
-        ...mapState(["interdata", "user"]),
+        ...mapState(["user"]),
         style() {
             const arrOfUrls = []
-            this.idata.userMetaData.cloudData.forEach(function(e) {
+            this.idata.interData.userMetaData.cloudData.forEach(function(e) {
                 arrOfUrls.push(`background-image:url(${e.url});background-size:cover`)
             })
             return arrOfUrls
@@ -81,10 +81,10 @@ export default {
     },
     methods: {
       ...mapMutations(['setNumberOfLikes']),
-      likeImg() {
+      async likeImg() {
           const imgWhichLikedId = this.dataset.id
           const userWhichLikedName = this.user.name
-          const interdata = this.idata
+          const interd = this.idata
           const ch = this.check
           function check(ch) {
               interd.userMetaData.cloudData.forEach(function(e) {
@@ -105,11 +105,18 @@ export default {
               return ch
           }
           this.check = check(ch)
-          const number = {
-              imgWhichLikedId: imgWhichLikedId,
-              userWhichLikedName: userWhichLikedName
-          }
+          
           if(this.check) {
+              const number = {
+                  imgWhichLikedId: imgWhichLikedId,
+                  userWhichLikedName: userWhichLikedName
+              }
+              interd.userMetaData.cloudData.forEach(function(e) {
+                  if(e.public_id === number.imgWhichLikedId) {
+                      e.userWhichLiked.push({ userName: number.userWhichLikedName, imgId: number.imgWhichLikedId })
+                      e.numberOfLikes += 1
+                  }
+              })
               this.setNumberOfLikes(number)
               this.$socket.emit('likeImg', {
                   room: this.user.room,
@@ -117,15 +124,18 @@ export default {
                   name: this.user.name,
                   intername: this.idata.appMetaData.username
               })
+
           }
-          const email = this.idata.email
-          const info = this.idata.userMetaData.info
-          const cloudData = this.idata.userMetaData.cloudData
-          this.$axios.$post(`/server/user-info`, {
+          
+          const email = interd.email
+          const info = interd.userMetaData.info
+          const cloudData = interd.userMetaData.cloudData
+          const profileData = await this.$axios.$post(`/server/user-info`, {
               text: info,
               cloudData: cloudData,
               email: email
           })
+          this.$store.dispatch('setData', profileData)
       },
       getDataset(e) {
         this.dataset = {
