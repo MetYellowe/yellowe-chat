@@ -111,21 +111,7 @@ export default {
                   imgWhichLikedId: imgWhichLikedId,
                   userWhichLikedName: userWhichLikedName
               }
-              interd.userMetaData.cloudData.forEach(function(e) {
-                  if(e.public_id === number.imgWhichLikedId) {
-                      e.userWhichLiked.push({ userName: number.userWhichLikedName, imgId: number.imgWhichLikedId })
-                      e.numberOfLikes += 1
-                  }
-              })
-              const email = interd.email
-              const info = interd.userMetaData.info
-              const cloudData = interd.userMetaData.cloudData
-              const profileData = await this.$axios.$post(`/server/user-info`, {
-                  text: info,
-                  cloudData: cloudData,
-                  email: email
-              })
-              this.$store.dispatch('setData', profileData)
+          
               this.$socket.emit('likeImg', {
                   room: this.user.room,
                   imgWhichLikedId: this.dataset.id,
