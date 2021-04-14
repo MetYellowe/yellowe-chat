@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapState } from 'vuex'
 export default {
     data: () => ({
       dataset: "",
@@ -80,7 +80,6 @@ export default {
         }
     },
     methods: {
-      ...mapMutations(['setNumberOfLikes']),
       async likeImg() {
           const imgWhichLikedId = this.dataset.id
           const userWhichLikedName = this.user.name
@@ -126,7 +125,6 @@ export default {
                   email: email
               })
               this.$store.dispatch('setData', profileData)
-              this.setNumberOfLikes(number)
               this.$socket.emit('likeImg', {
                   room: this.user.room,
                   imgWhichLikedId: this.dataset.id,
