@@ -111,7 +111,15 @@ export default {
                   imgWhichLikedId: imgWhichLikedId,
                   userWhichLikedName: userWhichLikedName
               }
-          
+              const email = interd.email
+              const info = interd.userMetaData.info
+              const cloudData = interd.userMetaData.cloudData
+              const profileData = await this.$axios.$post(`/server/user-info`, {
+                  text: info,
+                  cloudData: cloudData,
+                  email: email
+              })
+              this.$store.dispatch('setData', profileData)
               this.$socket.emit('likeImg', {
                   room: this.user.room,
                   imgWhichLikedId: this.dataset.id,
