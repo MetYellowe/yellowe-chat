@@ -73,7 +73,7 @@ export default {
         ...mapState(["user"]),
         style() {
             const arrOfUrls = []
-            this.idata.interData.userMetaData.cloudData.forEach(function(e) {
+            this.idata.userMetaData.cloudData.forEach(function(e) {
                 arrOfUrls.push(`background-image:url(${e.url});background-size:cover`)
             })
             return arrOfUrls
