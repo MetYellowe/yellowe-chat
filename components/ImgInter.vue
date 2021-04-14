@@ -4,7 +4,7 @@
       justify="space-around"
     >
       <v-col
-        v-for="i in idata.interData.userMetaData.cloudData"
+        v-for="i in idata.userMetaData.cloudData"
         :key="i.public_id"
         :data-id="i.public_id"
         :data-url="i.url"
