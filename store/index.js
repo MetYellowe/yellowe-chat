@@ -83,13 +83,6 @@ export const mutations = {
     setInterData(state, data) {
         state.interdata = data
     },
-    setNumberOfLikes(state, data) {
-        state.interdata.userMetaData.cloudData.forEach(function(e) {
-            if(e.public_id === data.imgWhichLikedId) {
-                e.userWhichLiked.push({ userName: data.userWhichLikedName, imgId: data.imgWhichLikedId })
-            }
-        })
-    },
     setDataToState(state, data) {
         if(!data.length) {
             if(data.cloudData) {
@@ -110,7 +103,7 @@ export const mutations = {
     },
     SOCKET_increaseCountOfLikes(state, data) {
         state.interdata.userMetaData.cloudData.forEach(function(e) {
-            if(e.public_id === data.id && !e.userWhichLiked.includes(data.name)) {
+            if(e.public_id === data.id) {
                 e.numberOfLikes += 1
             }
         })
