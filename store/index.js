@@ -105,6 +105,7 @@ export const mutations = {
         state.interdata.userMetaData.cloudData.forEach(function(e) {
             if(e.public_id === data.id) {
                 e.numberOfLikes += 1
+                e.userWhichLiked.push({ userName: data.name, imgId: data.id })
             }
         })
     }
