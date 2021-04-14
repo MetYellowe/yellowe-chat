@@ -117,6 +117,15 @@ export default {
                       e.numberOfLikes += 1
                   }
               })
+              const email = interd.email
+              const info = interd.userMetaData.info
+              const cloudData = interd.userMetaData.cloudData
+              const profileData = await this.$axios.$post(`/server/user-info`, {
+                  text: info,
+                  cloudData: cloudData,
+                  email: email
+              })
+              this.$store.dispatch('setData', profileData)
               this.setNumberOfLikes(number)
               this.$socket.emit('likeImg', {
                   room: this.user.room,
@@ -126,16 +135,6 @@ export default {
               })
 
           }
-          
-          const email = interd.email
-          const info = interd.userMetaData.info
-          const cloudData = interd.userMetaData.cloudData
-          const profileData = await this.$axios.$post(`/server/user-info`, {
-              text: info,
-              cloudData: cloudData,
-              email: email
-          })
-          this.$store.dispatch('setData', profileData)
       },
       getDataset(e) {
         this.dataset = {
