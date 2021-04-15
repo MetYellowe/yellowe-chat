@@ -89,13 +89,9 @@ export const mutations = {
             }
         } else {
             const imgUrls = state.data.userMetaData.cloudData
-            const numberOfLikes = imgUrls.numberOfLikes
-            const userWhichLiked = imgUrls.userWhichLiked
-            imgUrls.forEach(function(e) {
-                Object.assign(e, {
-                    numberOfLikes: 0,
-                    userWhichLiked: [{userName: "X", imgId: "1"}]
-                })
+            data.forEach(function(e) {
+                e.numberOfLikes = 0
+                e.userWhichLiked = [{userName: "X", imgId: "1"}]
             })
             const joinImgs = data.concat(imgUrls)
             
