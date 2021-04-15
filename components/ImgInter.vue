@@ -9,7 +9,8 @@
         :data-id="i.public_id"
         :data-url="i.url"
         cols="12"
-        :sm="idata.userMetaData.cloudData.length === 1 ? 12 : idata.userMetaData.cloudData.length === 2 ? 6 : 4"
+        sm="6"
+        :md="idata.userMetaData.cloudData.length === 1 ? 12 : idata.userMetaData.cloudData.length === 2 ? 6 : 4"
         @mouseover="getDataset"
       >
         <v-card
