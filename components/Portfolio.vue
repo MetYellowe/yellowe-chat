@@ -63,7 +63,7 @@ export default {
                 cloudData: this.$store.state.joinImgs,
                 email: email
             })
-            //this.$store.dispatch('setData', data)
+            this.$store.dispatch('setData', data)
             //this.data = data
             this.hidForm({
                 imagesDownloaded: false,
