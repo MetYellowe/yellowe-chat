@@ -92,8 +92,9 @@ export const mutations = {
             const numberOfLikes = imgUrls.numberOfLikes
             const userWhichLiked = imgUrls.userWhichLiked
             imgUrls.forEach(function(e) {
-                e.numberOfLikes = 0
-                e.userWhichLiked = [{userName: "X", imgId: "1"}]
+                Object.assign(e, {numberOfLikes: 0,
+                    userWhichLiked: [{userName: "X", imgId: "1"}]
+                })
             })
             const joinImgs = data.concat(imgUrls)
             
