@@ -1,125 +1,150 @@
-export const state = () => ({
-    user: {},
-    interlocutors: [
-        {
-            name: 'Common Room',
-            show: true,
-            messages: []
-        }
-    ],
-    users: [],
-    data: {},
-    joinImgs: [],
-    interdata: {},
-    messages: []
-})
+<template>
+    <v-container class="grey lighten-5">
+    <v-row
+      justify="space-around"
+    >
+      <v-col
+        v-for="i in idata.userMetaData.cloudData"
+        :key="i.public_id"
+        :data-id="i.public_id"
+        :data-url="i.url"
+        cols="12"
+        :sm="idata.userMetaData.cloudData.length === 1 ? 12 : idata.userMetaData.cloudData.length === 2 ? 6 : 4"
+        @mouseover="getDataset"
+      >
+        <v-card
+          @mouseover="showButton = true"
+          @mouseout="showButton = false"
+          @click="enlargeImg"
+          class="pa-2"
+          outlined
+          tile
+          :style="style.shift()"
+          width="300"
+          height="450"
+        >
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                @click="likeImg"
+                icon
+                :color="showButton && i.public_id === dataset.id ? 'red' : 'rgba(255, 255, 255, 0)'"
+                dark
+                v-bind="attrs"
+                v-on="on"
+                @mouseover="onButton"
+                @mouseout="offButton"
+              >
+                <v-icon>mdi-heart</v-icon>
+              </v-btn>
+            </template>
+            <span>I like</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                :color="showButton && i.public_id === dataset.id ? 'red' : 'rgba(255, 255, 255, 0)'"
+                dark
+                v-bind="attrs"
+                v-on="on"
+              >
+                {{ i.numberOfLikes }}
+              </v-btn>
+            </template>
+            <span>People like</span>
+          </v-tooltip>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
 
-export const mutations = {
-    setUser(state, user) {
-        state.user = user
-    },
-    setInterlocutor(state, interlocutor) {
-        let requiredInterlocutor = state.interlocutors.find(elem => elem.name === interlocutor.name)
-        
-        if(requiredInterlocutor) {
-            state.interlocutors = state.interlocutors.filter(elem => elem.name != interlocutor.name)
-            state.interlocutors.unshift(requiredInterlocutor)
-            state.interlocutors[0].show = true
-        } else {
-            state.interlocutors.unshift(interlocutor)
-        }
-        if(state.interlocutors[1]) {
-            state.interlocutors[1].show = false
-        }
-        state.users.forEach(user => {
-            user.attention = ""
-        })
-        state.messages.forEach(mes => {
-            if(mes.room === interlocutor.name) {
-                state.interlocutors[0].messages.push(mes)
-                state.messages = []
-            }
-        })
-    },
-    hideWindow(state) {
-        state.interlocutors[0].show = false
-        const lastHiddenInterlocutor = state.interlocutors.splice(0,1)
-        state.interlocutors.push(lastHiddenInterlocutor[0])
-        state.interlocutors[0].show = true
-    },
-    clearData(state) {
-        state.user = {}
-        state.messages = []
-        state.users = []
-        state.interlocutors = [
-            {
-                name: 'Common Room',
-                show: true,
-                messages: []
-            }
-        ]
-    },
-    SOCKET_newMessage(state, message) {
-        if(message && state.user.name !== message.name && message.room !== 'Common Room') {
-            state.users.forEach(user => {
-                if(message.name === user.name) {
-                    if(state.interlocutors[0].name != message.room) {
-                        user.attention = "#ff0000"
-                    }
-                }
+<script>
+import { mapMutations, mapState } from 'vuex'
+export default {
+    data: () => ({
+      dataset: "",
+      showButton: false,
+      buttonTarget: false,
+      check: false,
+      isLikeYet: false
+    }),
+    props: ["idata"],
+    computed: {
+        ...mapState(["interdata", "user"]),
+        style() {
+            const arrOfUrls = []
+            this.idata.userMetaData.cloudData.forEach(function(e) {
+                arrOfUrls.push(`background-image:url(${e.url});background-size:cover`)
             })
-        }
-        if(message.name === 'Admin' && state.interlocutors[0].name === 'Common Room' || state.interlocutors[0].name === message.room) {
-            state.interlocutors[0].messages.push(message)
-        } else if(message.name != 'Admin' && state.interlocutors[0].name === message.room) {
-            state.interlocutors[0].messages.push(message)
-        } else {
-            state.messages.push(message)
+            return arrOfUrls
         }
     },
-    SOCKET_updateUsers(state, users) {
-        state.users = users
-    },
-    setDataToState(state, data) {
-        if(!data.length) {
-            if(data.cloudData) {
-                state.data.userMetaData = data
-            } else {
-                state.data = data
-            }
-        } else {
-            const imgUrls = state.data.userMetaData.cloudData
-            const joinImgs = data.concat(imgUrls)
-            const numberOfLikes = imgUrls.numberOfLikes
-            const userWhichLiked = imgUrls.userWhichLiked
-            joinImgs.forEach(function(e) {
-                e.numberOfLikes = numberOfLikes || 0
-                e.userWhichLiked = userWhichLiked || [{userName: "X", imgId: "1"}]
-            })
-            
-            state.joinImgs = joinImgs
+    methods: {
+      ...mapMutations(['setNumberOfLikes']),
+      likeImg() {
+          const imgWhichLikedId = this.dataset.id
+          const userWhichLikedName = this.user.name
+          const interdata = this.idata
+          const ch = this.check
+          const isLikeYet = this.isLikeYet
+          function check(ch, isLikeYet) {
+              interdata.userMetaData.cloudData.forEach(function(e) {
+                  if(e.public_id === imgWhichLikedId) {
+                      e.userWhichLiked.forEach(function(e) {
+                          if(userWhichLikedName === e.userName) {
+                              isLikeYet = true
+                          }
+                      })
+                      if(isLikeYet) {
+                          ch = false
+                      } else {
+                          ch = true
+                      }
+                  }
+              })
+              return ch
+          }
+          this.check = check(ch)
+          const number = {
+              imgWhichLikedId: imgWhichLikedId,
+              userWhichLikedName: userWhichLikedName
+          }
+          if(this.check) {
+              this.setNumberOfLikes(number)
+              this.$socket.emit('likeImg', {
+                  room: this.user.room,
+                  imgWhichLikedId: this.dataset.id,
+                  name: this.user.name,
+                  intername: this.idata.appMetaData.username
+              })
+          }
+          const email = this.idata.email
+          const info = this.idata.userMetaData.info
+          const cloudData = this.idata.userMetaData.cloudData
+          this.$axios.$post(`/server/user-info`, {
+              text: info,
+              cloudData: cloudData,
+              email: email
+          })
+      },
+      getDataset(e) {
+        this.dataset = {
+            id: e.currentTarget.dataset.id,
+            url: e.currentTarget.dataset.url
         }
-    },
-    setInterData(state, data) {
-        state.interdata = data
-    },
-    setNumberOfLikes(state, data) {
-        state.interdata.userMetaData.cloudData.forEach(function(e) {
-            if(e.public_id === data.imgWhichLikedId) {
-                e.userWhichLiked.push({ userName: data.userWhichLikedName, imgId: data.imgWhichLikedId })
-            }
-        })
-    },
-    SOCKET_increaseCountOfLikes(state, data) {
-        state.interdata.userMetaData.cloudData.forEach(function(e) {
-            if(e.public_id === data.id && !e.userWhichLiked.includes(data.name)) {
-                e.numberOfLikes += 1
-            }
-        })
+      },
+      enlargeImg(e) {
+          if(!this.buttonTarget) {
+              window.open(this.dataset.url, '_blank')
+          }
+      },
+      onButton() {
+          this.buttonTarget = true
+      },
+      offButton() {
+          this.buttonTarget = false
+      }
     }
 }
-export const actions = {
-    setData({ commit }, data) {
-        commit('setDataToState', data)
-    }
-}
+</script>
