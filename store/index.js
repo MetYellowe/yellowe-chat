@@ -80,9 +80,6 @@ export const mutations = {
     SOCKET_updateUsers(state, users) {
         state.users = users
     },
-    setInterData(state, data) {
-        state.interdata = data
-    },
     setDataToState(state, data) {
         if(!data.length) {
             if(data.cloudData) {
@@ -93,19 +90,30 @@ export const mutations = {
         } else {
             const imgUrls = state.data.userMetaData.cloudData
             const joinImgs = data.concat(imgUrls)
+            const numberOfLikes = imgUrls.numberOfLikes
+            const userWhichLiked = imgUrls.userWhichLiked
             joinImgs.forEach(function(e) {
-                if(!e.userWhichLiked) {
-                    Object.assign(e, {userWhichLiked: [], numberOfLikes: 0})
-                }
+                e.numberOfLikes = numberOfLikes || 0
+                e.userWhichLiked = userWhichLiked || [{userName: "X", imgId: "1"}]
             })
+            
             state.joinImgs = joinImgs
         }
     },
+    setInterData(state, data) {
+        state.interdata = data
+    },
+    setNumberOfLikes(state, data) {
+        state.interdata.userMetaData.cloudData.forEach(function(e) {
+            if(e.public_id === data.imgWhichLikedId) {
+                e.userWhichLiked.push({ userName: data.userWhichLikedName, imgId: data.imgWhichLikedId })
+            }
+        })
+    },
     SOCKET_increaseCountOfLikes(state, data) {
         state.interdata.userMetaData.cloudData.forEach(function(e) {
-            if(e.public_id === data.id) {
+            if(e.public_id === data.id && !e.userWhichLiked.includes(data.name)) {
                 e.numberOfLikes += 1
-                e.userWhichLiked.push({ userName: data.name, imgId: data.id })
             }
         })
     }
