@@ -111,7 +111,7 @@ export const mutations = {
     },
     SOCKET_increaseCountOfLikes(state, data) {
         state.interdata.userMetaData.cloudData.forEach(function(e) {
-            if(e.public_id === data.id && !e.userWhichLiked.includes(data.name)) {
+            if(e.public_id === data.id) {
                 e.numberOfLikes += 1
             }
         })
