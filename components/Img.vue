@@ -4,12 +4,13 @@
       justify="space-around"
     >
       <v-col
-        v-for="i in idata ? idata : updateImgs"
+        v-for="i in updateImgs"
         :key="i.public_id"
         :data-id="i.public_id"
         :data-url="i.url"
         cols="12"
-        :sm="updateImgs.length === 1 ? 12 : updateImgs.length === 2 ? 6 : 4"
+        sm="6"
+        :md="updateImgs.length === 1 ? 12 : updateImgs.length === 2 ? 6 : 4"
         @mouseover="getDataset"
       >
         <v-card
@@ -71,9 +72,6 @@ export default {
                 arrOfUrls.push(`background-image:url(${e.url});background-size:cover`)
             })
             return arrOfUrls
-        },
-        idata() {
-            return this.$store.state.interdata.userMetaData ? this.$store.state.interdata.userMetaData.cloudData : false
         }
     },
     props: ['imgData', 'updateImgs'],
