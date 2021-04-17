@@ -86,7 +86,7 @@ export default {
           const imgWhichLikedId = this.dataset.id
           const userWhichLikedName = this.user.name
           const ch = this.check
-          function check(ch, isLikeYet) {
+          function check(ch) {
               this.interdata.userMetaData.cloudData.forEach(function(e) {
                   if(e.public_id === imgWhichLikedId) {
                       e.userWhichLiked.forEach(function(e) {
