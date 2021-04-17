@@ -67,10 +67,8 @@ export default {
       dataset: "",
       showButton: false,
       buttonTarget: false,
-      check: false,
-      isLikeYet: false
+      check: false
     }),
-    props: ["idata"],
     computed: {
         ...mapState(["interdata", "user"]),
         style() {
@@ -86,22 +84,16 @@ export default {
       likeImg() {
           const imgWhichLikedId = this.dataset.id
           const userWhichLikedName = this.user.name
-          const interdata = this.idata
           const ch = this.check
-          const isLikeYet = this.isLikeYet
           function check(ch, isLikeYet) {
-              interdata.userMetaData.cloudData.forEach(function(e) {
+              this.interdata.userMetaData.cloudData.forEach(function(e) {
                   if(e.public_id === imgWhichLikedId) {
                       e.userWhichLiked.forEach(function(e) {
                           if(userWhichLikedName === e.userName) {
-                              isLikeYet = true
-                          }
+                              ch = false
+                          } else {
+                              ch = true
                       })
-                      if(isLikeYet) {
-                          ch = false
-                      } else {
-                          ch = true
-                      }
                   }
               })
               return ch
@@ -117,12 +109,12 @@ export default {
                   room: this.user.room,
                   imgWhichLikedId: this.dataset.id,
                   name: this.user.name,
-                  intername: this.idata.appMetaData.username
+                  intername: this.interdata.appMetaData.username
               })
           }
-          const email = this.idata.email
-          const info = this.idata.userMetaData.info
-          const cloudData = this.idata.userMetaData.cloudData
+          const email = this.interdata.email
+          const info = this.interdata.userMetaData.info
+          const cloudData = this.interdata.userMetaData.cloudData
           this.$axios.$post(`/server/user-info`, {
               text: info,
               cloudData: cloudData,
