@@ -40,7 +40,7 @@
                             @mouseover="stopCycle"
                             @mouseout="activeCycle"
                         >
-                            <ImgInter :idata="idata"/>
+                            <ImgInter/>
                         </v-card-actions>
                         <v-card-text
                             class="black--text"
@@ -78,9 +78,6 @@
       }
     },
     computed: {
-        idata() {
-            return this.$store.state.interdata
-        },
         info() {
             return this.$store.state.interdata.userMetaData.info
         },
