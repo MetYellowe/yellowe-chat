@@ -4,13 +4,13 @@
       justify="space-around"
     >
       <v-col
-        v-for="i in idata.userMetaData.cloudData"
+        v-for="i in interdata.userMetaData.cloudData"
         :key="i.public_id"
         :data-id="i.public_id"
         :data-url="i.url"
         cols="12"
         sm="6"
-        :md="idata.userMetaData.cloudData.length === 1 ? 12 : idata.userMetaData.cloudData.length === 2 ? 6 : 4"
+        :md="interdata.userMetaData.cloudData.length === 1 ? 12 : interdata.userMetaData.cloudData.length === 2 ? 6 : 4"
         @mouseover="getDataset"
       >
         <v-card
