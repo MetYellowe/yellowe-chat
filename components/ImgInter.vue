@@ -4,13 +4,13 @@
       justify="space-around"
     >
       <v-col
-        v-for="i in interdata.userMetaData.cloudData"
+        v-for="i in interd.userMetaData.cloudData"
         :key="i.public_id"
         :data-id="i.public_id"
         :data-url="i.url"
         cols="12"
         sm="6"
-        :md="interdata.userMetaData.cloudData.length === 1 ? 12 : interdata.userMetaData.cloudData.length === 2 ? 6 : 4"
+        :md="interd.userMetaData.cloudData.length === 1 ? 12 : interd.userMetaData.cloudData.length === 2 ? 6 : 4"
         @mouseover="getDataset"
       >
         <v-card
@@ -69,12 +69,12 @@ export default {
       buttonTarget: false,
       check: false
     }),
-    props: ["interdata"],
+    props: ["interd"],
     computed: {
-        ...mapState(["user"]),
+        ...mapState(["interdata", "user"]),
         style() {
             const arrOfUrls = []
-            this.interdata.userMetaData.cloudData.forEach(function(e) {
+            this.interd.userMetaData.cloudData.forEach(function(e) {
                 arrOfUrls.push(`background-image:url(${e.url});background-size:cover`)
             })
             return arrOfUrls
@@ -87,7 +87,7 @@ export default {
           const userWhichLikedName = this.user.name
           const ch = this.check
           function check(ch) {
-              this.interdata.userMetaData.cloudData.forEach(function(e) {
+              this.interd.userMetaData.cloudData.forEach(function(e) {
                   if(e.public_id === imgWhichLikedId) {
                       e.userWhichLiked.forEach(function(e) {
                           if(userWhichLikedName === e.userName) {
@@ -111,7 +111,7 @@ export default {
                   room: this.user.room,
                   imgWhichLikedId: this.dataset.id,
                   name: this.user.name,
-                  intername: this.interdata.appMetaData.username
+                  intername: this.interd.appMetaData.username
               })
           }
           const email = this.interdata.email
