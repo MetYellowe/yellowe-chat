@@ -93,6 +93,7 @@ export default {
                               ch = false
                           } else {
                               ch = true
+                          }
                       })
                   }
               })
