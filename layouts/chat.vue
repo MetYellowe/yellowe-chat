@@ -173,12 +173,12 @@ export default {
                     appMetaData: metaData[0].app_metadata,
                     email: email
                 }
-                if(this.userPortfolioId != this.user.id) {
+                if(this.userPortfolioId !== this.user.id) {
                     this.setInterData(interData)
                     this.$router.push('/profileinter')
                     //window.open('https://yellowe-chat.herokuapp.com/profileinter', '_blank')
                 } else {
-                    this.setInterData(interData)
+                    //this.setInterData(interData)
                     this.$router.push('/profile')
                     //window.open('https://yellowe-chat.herokuapp.com/profile', '_blank')
                 }
