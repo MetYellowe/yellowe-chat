@@ -69,8 +69,9 @@ export default {
       buttonTarget: false,
       check: false
     }),
+    props: ["interdata"],
     computed: {
-        ...mapState(["interdata", "user"]),
+        ...mapState(["user"]),
         style() {
             const arrOfUrls = []
             this.idata.userMetaData.cloudData.forEach(function(e) {
