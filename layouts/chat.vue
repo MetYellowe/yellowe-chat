@@ -152,6 +152,7 @@ export default {
             }
         },
         async openPortfolio() {
+            const userPortfolioId = this.userPortfolioId
             const clientId = "y4W7sXKqe6pOd6wxgRlbm2syLcZ9Zes4"
             const clientSecret = "4Umk4WQj6eM16hMLhrhNB5fav9RplvKwUWePYFDMjWJgUpOaQRAWjAOyb2nTU-N8"
             const email = this.dataset.email
@@ -173,12 +174,13 @@ export default {
                     appMetaData: metaData[0].app_metadata,
                     email: email
                 }
+                this.userPortfolioId = userPortfolioId
                 if(this.userPortfolioId !== this.user.id) {
                     this.setInterData(interData)
                     this.$router.push('/profileinter')
                     //window.open('https://yellowe-chat.herokuapp.com/profileinter', '_blank')
                 } else {
-                    //this.setInterData(interData)
+                    this.setInterData(interData)
                     this.$router.push('/profile')
                     //window.open('https://yellowe-chat.herokuapp.com/profile', '_blank')
                 }
