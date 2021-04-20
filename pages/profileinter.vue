@@ -40,7 +40,7 @@
                             @mouseover="stopCycle"
                             @mouseout="activeCycle"
                         >
-                            <ImgInter :interd='interdata'/>
+                            <ImgInter :interdata='interdata'/>
                         </v-card-actions>
                         <v-card-text
                             class="black--text"
