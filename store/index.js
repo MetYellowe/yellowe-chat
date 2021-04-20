@@ -96,6 +96,7 @@ export const mutations = {
             const joinImgs = data.concat(imgUrls)
             
             state.joinImgs = joinImgs
+            state.interdata = joinImgs
         }
     },
     setInterData(state, data) {
