@@ -4,13 +4,13 @@
       justify="space-around"
     >
       <v-col
-        v-for="i in updateImgs"
+        v-for="i in interdata.length ? interdata : updateImgs"
         :key="i.public_id"
         :data-id="i.public_id"
         :data-url="i.url"
         cols="12"
         sm="6"
-        :md="updateImgs.length === 1 ? 12 : updateImgs.length === 2 ? 6 : 4"
+        :md="interdata.length ? interdata.length : updateImgs.length === 1 ? 12 : interdata.length ? interdata.length : updateImgs.length === 2 ? 6 : 4"
         @mouseover="getDataset"
       >
         <v-card
@@ -68,10 +68,19 @@ export default {
     computed: {
         style() {
             const arrOfUrls = []
-            this.updateImgs.forEach(function(e) {
+            this.interdata.length ? this.interdata.forEach(function(e) {
+                arrOfUrls.push(`background-image:url(${e.url});background-size:cover`)
+            }) : this.updateImgs.forEach(function(e) {
                 arrOfUrls.push(`background-image:url(${e.url});background-size:cover`)
             })
             return arrOfUrls
+        },
+        interdata() {
+            if(this.$store.state.interdata.userMetaData) {
+                return this.$store.state.interdata.userMetaData.cloudData
+            } else {
+              return ''
+            }
         }
     },
     props: ['imgData', 'updateImgs'],
